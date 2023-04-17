@@ -1,4 +1,13 @@
 .App {
+  font-size: 30px;
+}
+
+.Blah {
+  background-color: blue;
+  width: 100px;
+  height: 50px;
+}
+/*.App {
   text-align: center;
 }
 
@@ -35,4 +44,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+}*/
