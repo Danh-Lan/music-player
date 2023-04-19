@@ -1,3 +1,5 @@
+import './css/MusicList.css';
+
 function MusicList() {
 	const songsURL = [
 		"https://www.youtube.com/watch?v=dQw4w9WgXcQ", 
@@ -5,9 +7,15 @@ function MusicList() {
 	];
 
 	return (
-		<>
-		<li>1</li>
-		<li>2</li>
-		</>
+		<div className="Music-list">
+			Music list			
+			{songsURL.map((song) => (
+				<div>
+					<a href={song}>{song}</a>
+				</div>
+			))}
+		</div>
 	);
 }
+
+export default MusicList;

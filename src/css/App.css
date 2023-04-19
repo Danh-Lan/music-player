@@ -5,10 +5,6 @@ body {
 	background-image: linear-gradient(to right, gray, silver);
 }
 
-.Music-list {
-	min-height: 50%;
-}
-
 .current-play {
 	/*position: fixed;
 	bottom: 0%;*/

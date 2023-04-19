@@ -1,4 +1,4 @@
-import './SpicyButton.css';
+import './css/SpicyButton.css';
 
 const URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
