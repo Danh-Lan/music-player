@@ -30,7 +30,7 @@ function Control({isPlaying, setIsPlaying, song, setSong, currentSong, setCurren
 	};
 
 	return (
-        <div>
+        <div >
 			<IconContext.Provider value={{ className: 'react-icons' }}>
 				<ImPrevious2 size={size} onClick={previousSong} />
 				

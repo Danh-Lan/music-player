@@ -13,8 +13,14 @@ function App() {
   const [currentSong, setCurrentSong] = useState(musicList[0]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   
+  const handleKeyPress = (event) => {
+		if(event.key === ' '){
+			setIsPlaying(!isPlaying);
+		}
+	};
+
   return (
-    <div className="Music-site">
+    <div className="Music-site" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)}>
       <DisplaySong currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} />
       
       <ProgressBar/>
