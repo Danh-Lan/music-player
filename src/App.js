@@ -1,4 +1,4 @@
-import SpicyButton from './SpicyButton.js';
+import RandomButton from './RandomButton.js';
 import musicList from './data/MusicList.js';
 import DisplaySong from './DisplaySong.js';
 import Control from './Control.js';
@@ -31,7 +31,7 @@ function App() {
         setCurrentSong={setCurrentSong}
         currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
       
-      <SpicyButton song={song} setCurrentSong={setCurrentSong}
+      <RandomButton song={song} setCurrentSong={setCurrentSong}
         setCurrentSongIndex={setCurrentSongIndex} />
     </div>
   );
