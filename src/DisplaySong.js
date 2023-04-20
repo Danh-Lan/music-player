@@ -1,7 +1,8 @@
 import ReactPlayer from 'react-player';
+
 import './css/DisplaySong.css';
 
-function DisplaySong({currentSong}) {
+function DisplaySong({currentSong, isPlaying, setIsPlaying}) {
 	return (
         <div className="video-wrapper">
 			<div>
@@ -10,8 +11,15 @@ function DisplaySong({currentSong}) {
 
 			<ReactPlayer 
 				url = {currentSong.url}
-				width = "50%"
-				height = "50%"
+				playing = {isPlaying}
+				
+				config={{
+					file: {
+						attributes: {
+							controlsList: "nofullscreen",
+						},
+					},
+				}}
 			/>
 		</div>
 	);
