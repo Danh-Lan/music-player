@@ -1,14 +1,15 @@
 import './css/SpicyButton.css';
 
-const URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+function SpicyButton({song, setCurrentSong, setCurrentSongIndex}) {
+	const randomSong = () => {
+		const newSongIndex = Math.floor(Math.random()*song.length);
 
-function SpicyButton() {
-	const openURL = () => {
-		window.open(URL);
+		setCurrentSong(song[newSongIndex]);
+		setCurrentSongIndex(newSongIndex);
 	};
 
 	return (
-		<button className="SpicyButton" onClick={openURL}>I'm feeling spicy today</button>
+		<button className="SpicyButton" onClick={randomSong}>I'm feeling spicy today</button>
 	);
 }
 

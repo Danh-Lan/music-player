@@ -6,7 +6,7 @@ import { ImStop2 } from "react-icons/im";
 
 import './css/Control.css';
 
-function Control({isPlaying, setIsPlaying, song, setSong, currentSong, setCurrentSong, currentSongIndex, setCurrentSongIndex}) {
+function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex}) {
 	const size = '40';
 
 	const playStop = () => {

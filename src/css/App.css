@@ -1,15 +1,13 @@
+*, *::after, *::before {
+	outline: none;
+}
+
 body {
 	margin: 0 auto;
 	font-size: 20px;
+	background-image: linear-gradient(to right, gray, silver);
 }
 
 .Music-site {
 	text-align: center;
-	background-image: linear-gradient(to right, gray, silver);
-}
-
-.Music-site .Spicy-button {
-	position: absolute;
-	display: inline-block;
-	text-align: left;
 }

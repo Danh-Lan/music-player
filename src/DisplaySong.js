@@ -2,7 +2,7 @@ import ReactPlayer from 'react-player';
 
 import './css/DisplaySong.css';
 
-function DisplaySong({currentSong, isPlaying, setIsPlaying}) {
+function DisplaySong({currentSong, isPlaying}) {
 	return (
         <div className="video-wrapper">
 			<div>

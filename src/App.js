@@ -3,6 +3,7 @@ import musicList from './data/MusicList.js';
 import DisplaySong from './DisplaySong.js';
 import Control from './Control.js';
 import ProgressBar from './ProgressBar.js';
+
 import { useState } from 'react';
 
 import './css/App.css';
@@ -23,14 +24,15 @@ function App() {
     <div className="Music-site" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)}>
       <DisplaySong currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} />
       
-      <ProgressBar/>
+      <ProgressBar />
 
       <Control isPlaying={isPlaying} setIsPlaying={setIsPlaying} 
-        song={song} setSong={setSong}
-        currentSong={currentSong} setCurrentSong={setCurrentSong}
-        currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex}/>
+        song={song}
+        setCurrentSong={setCurrentSong}
+        currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
       
-      <SpicyButton className="Spicy-button"/>
+      <SpicyButton song={song} setCurrentSong={setCurrentSong}
+        setCurrentSongIndex={setCurrentSongIndex} />
     </div>
   );
 }
