@@ -1,26 +1,25 @@
 import './css/App.css';
 import SpicyButton from './SpicyButton.js';
-import MusicList from './MusicList.js';
+import musicList from './data/MusicList.js';
 import DisplaySong from './DisplaySong.js';
 import Control from './Control.js';
 import ProgressBar from './ProgressBar.js';
+import { useState } from 'react';
 
-// name song, name author, progress bar, stop start button, previous next button
 function App() {
-  const currentSong = 'https://www.youtube.com/watch?v=ngWybcg6tbo';
-
+  const [song, setSong] = useState(musicList);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSong, setCurrentSong] = useState(musicList[0]);
+  
   return (
     <div className="Music-site">
-
-      <MusicList/>
-
       <DisplaySong currentSong = {currentSong}/>
       
       <ProgressBar/>
 
       <Control/>
       
-      <SpicyButton/>
+      <SpicyButton className="Spicy-button"/>
     </div>
   );
 }

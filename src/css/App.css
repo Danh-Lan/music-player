@@ -1,11 +1,15 @@
 body {
 	margin: 0 auto;
-	position: relative;
-	text-align: center;
 	font-size: 20px;
-	
 }
 
 .Music-site {
+	text-align: center;
 	background-image: linear-gradient(to right, gray, silver);
+}
+
+.Music-site .Spicy-button {
+	position: absolute;
+	display: inline-block;
+	text-align: left;
 }

@@ -1,13 +1,17 @@
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 import './css/DisplaySong.css';
 
 function DisplaySong({currentSong}) {
 	return (
         <div className="video-wrapper">
+			<div>
+				{currentSong.title}
+			</div>
+
 			<ReactPlayer 
-				url = {currentSong}
-				width = '50%'
-				height = '50%'
+				url = {currentSong.url}
+				width = "50%"
+				height = "50%"
 			/>
 		</div>
 	);
