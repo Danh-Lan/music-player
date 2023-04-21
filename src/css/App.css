@@ -10,4 +10,11 @@ body {
 
 .Music-site {
 	text-align: center;
+	
+}
+
+.title {
+	display: flex;
+	text-align: left;
+	background-image: linear-gradient(to right, lightblue, lightgreen);
 }

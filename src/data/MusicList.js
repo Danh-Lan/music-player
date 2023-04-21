@@ -1,15 +1,18 @@
 const musicList = [
 	{
-		title: "song 1",
-		url: "https://soundcloud.com/miami-nights-1984" 
-	}, 
-	{
-		title: "song 2",
-		url: "https://www.youtube.com/watch?v=ngWybcg6tbo"
+		title: "Hãy để anh yêu em lần nữa",
+		langCode: "VN",
+		url: "https://soundcloud.com/the-men-music/h-y-anh-y-u-em-l-n-n-a"
 	},
 	{
-		title: "song 3",
-		url: "https://www.youtube.com/watch?v=vWw7VblG18E"
+		title: "Hazy moon",
+		langCode: "JP",
+		url : "https://soundcloud.com/officialhatsunemiku/hazy-moon-hatsune-miku"
+	},
+	{
+		title: "The wind rises (CN)",
+		langCode: "CN",
+		url : "https://soundcloud.com/ackermannn/the-wind-rises-zhou-shen"
 	}
 ];
 

@@ -3,29 +3,50 @@ import ReactPlayer from 'react-player';
 import './css/DisplaySong.css';
 
 function DisplaySong({currentSong, isPlaying, setIsPlaying}) {
-	const endSong = () => {
+	const onPlay = () => {
+		setIsPlaying(true);
+	};
+
+	const onPause = () => {
+		setIsPlaying(false);
+	};
+	const onEnded = () => {
 		setIsPlaying(false);
 	};
 
 	return (
-        <div className="video-wrapper">
-			{/*<div>
+		<div>
+			<div>
 				{currentSong.title}
-			</div>*/}
+			</div>
+			
+			<div className="video-wrapper">
+				<ReactPlayer 
+					url = {currentSong.url}
+					playing = {isPlaying}
 
-			<ReactPlayer 
-				url = {currentSong.url}
-				playing = {isPlaying}
-				onEnded = {endSong}
+					onPlay = {onPlay}
+					onPause = {onPause}
+					onEnded = {onEnded}
 
-				config={{
-					file: {
-						attributes: {
-							controlsList: "nofullscreen",
+					config={{
+						soundcloud: {
+							options: {
+								auto_play: false,
+								buying: false,
+								sharing: false,
+								download: false,
+							}
 						},
-					},
-				}}
-			/>
+
+						file: {
+							attributes: {
+								controlsList: "nofullscreen",
+							},
+						},
+					}}
+				/>
+			</div>
 		</div>
 	);
   };

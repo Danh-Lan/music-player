@@ -22,6 +22,10 @@ function App() {
 
   return (
     <div className="Music-site" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)}>
+      <div className="title">
+        React Music Player
+      </div>
+      
       <DisplaySong currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} />
       
       <ProgressBar />
