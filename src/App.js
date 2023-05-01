@@ -2,9 +2,8 @@ import RandomButton from './RandomButton.js';
 import musicList from './data/MusicList.js';
 import DisplaySong from './DisplaySong.js';
 import Control from './Control.js';
-import ProgressBar from './ProgressBar.js';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import './css/App.css';
 
@@ -13,6 +12,9 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSong, setCurrentSong] = useState(musicList[0]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [songProgress, setSongProgress] = useState(0);
+
+  //const videoPlayerRef = useRef();
   
   const handleKeyPress = (event) => {
 		if(event.key === ' '){
@@ -26,14 +28,15 @@ function App() {
         React Music Player
       </div>
       
-      <DisplaySong currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} />
-      
-      <ProgressBar />
+      <DisplaySong
+      currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} 
+        songProgress = {songProgress} setSongProgress = {setSongProgress} />
 
       <Control isPlaying={isPlaying} setIsPlaying={setIsPlaying} 
         song={song}
         setCurrentSong={setCurrentSong}
-        currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex} />
+        currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex}
+        songProgress = {songProgress} setSongProgress = {setSongProgress} />
       
       <RandomButton song={song} setCurrentSong={setCurrentSong}
         setCurrentSongIndex={setCurrentSongIndex} />

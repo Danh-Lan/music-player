@@ -6,7 +6,7 @@ import { ImStop2 } from "react-icons/im";
 
 import './css/Control.css';
 
-function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex}) {
+function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress}) {
 	const size = '40';
 
 	const playStop = () => {
@@ -16,6 +16,7 @@ function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongInde
 	const previousSong = () => {
 		const newSongIndex = (currentSongIndex + (song.length-1)) % song.length;
 		
+		setSongProgress(0);
 		setIsPlaying(true);
 		setCurrentSongIndex(newSongIndex);
 		setCurrentSong(song[newSongIndex]);
@@ -24,6 +25,7 @@ function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongInde
 	const nextSong = () => {
 		const newSongIndex = (currentSongIndex + 1) % song.length;
 
+		setSongProgress(0);
 		setIsPlaying(true);
 		setCurrentSongIndex(newSongIndex);
 		setCurrentSong(song[newSongIndex]);
