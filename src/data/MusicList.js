@@ -1,8 +1,12 @@
 const musicList = [
 	{
-		title: "Hãy để anh yêu em lần nữa",
-		langCode: "VN",
-		url: "https://soundcloud.com/the-men-music/h-y-anh-y-u-em-l-n-n-a"
+		title: "You know what it is",
+		url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+	},
+	{
+		title: "It's my life",
+		langCode: "ENG",
+		url: "https://www.youtube.com/watch?v=vx2u5uUu3DE",
 	},
 	{
 		title: "Hazy moon",

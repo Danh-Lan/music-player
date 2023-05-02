@@ -3,7 +3,7 @@ import musicList from './data/MusicList.js';
 import DisplaySong from './DisplaySong.js';
 import Control from './Control.js';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import './css/App.css';
 
@@ -13,8 +13,6 @@ function App() {
   const [currentSong, setCurrentSong] = useState(musicList[0]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [songProgress, setSongProgress] = useState(0);
-
-  //const videoPlayerRef = useRef();
   
   const handleKeyPress = (event) => {
 		if(event.key === ' '){

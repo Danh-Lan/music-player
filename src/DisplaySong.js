@@ -1,5 +1,5 @@
 import ReactPlayer from 'react-player';
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
@@ -8,23 +8,32 @@ import './css/DisplaySong.css';
 function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSongProgress}) {
 	const playerRef = useRef(null);
 
-	const onChange = (songProgress) => {
-		setSongProgress(songProgress);
-		playerRef.current.seekTo(songProgress, "seconds");
+	const [duration, setDuration] = useState(0);
+
+	const handleChange = (progress) => {
+		if (isPlaying) {
+			setSongProgress(progress);
+			playerRef.current.seekTo(progress, "seconds");
+		}
 	}
 
-	const onPlay = () => {
+	const handleDuration = (duration) => {
+		setDuration(duration);
+		console.log("duration : ", duration);
+	}
+
+	const handlePlay = () => {
 		setIsPlaying(true);
 	};
 
-	const onPause = () => {
+	const handlePause = () => {
 		setIsPlaying(false);
 	};
-	const onEnded = () => {
+	const handleEnded = () => {
 		setIsPlaying(false);
 	};
 
-	const onProgress = (progress) => {
+	const handleProgress = (progress) => {
 		setSongProgress(progress.playedSeconds);
 	};
 
@@ -37,13 +46,15 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 			<div className="player-wrapper">
 				<ReactPlayer className = "player"
 					ref = {playerRef}
+					key = {currentSong.url} /* force reload to deal with bad duration time issue */
 					url = {currentSong.url}
 					playing = {isPlaying}
-					controls = {true}
-					onPlay = {onPlay}
-					onPause = {onPause}
-					onEnded = {onEnded}
-					onProgress = {onProgress}
+					controls = {false}
+					onPlay = {handlePlay}
+					onPause = {handlePause}
+					onEnded = {handleEnded}
+					onProgress = {handleProgress}
+					onDuration = {handleDuration}
 
 					config={{
 						soundcloud: {
@@ -52,6 +63,7 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 								buying: false,
 								sharing: false,
 								download: false,
+								showArtwork: false,
 							}
 						},
 
@@ -62,19 +74,19 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 						},
 					}}
 				/>
+
+				<Slider
+					defaultValue = {0}
+					min = {0}
+					max = {duration}
+					step = {1}
+					onChange = {handleChange}
+					value = {songProgress}
+				/>
 			</div>
 
-			<div className="progress">
-				<span className="time-current">{songProgress}</span>
-				<Slider
-					defaultValue={0}
-					min={0}
-					max={100}
-					step={1}
-					onChange= {onChange}
-					value={Math.floor(songProgress)}
-				/>
-				<span className="time">03:34</span>
+			<div>
+				<span>{Math.floor(songProgress)}</span>
 			</div>
 		</div>
 	);
