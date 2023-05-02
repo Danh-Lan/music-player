@@ -1,6 +1,6 @@
 import RandomButton from './RandomButton.js';
 import musicList from './data/MusicList.js';
-import DisplaySong from './DisplaySong.js';
+import Player from './Player.js';
 import Control from './Control.js';
 
 import { useState } from 'react';
@@ -26,7 +26,7 @@ function App() {
         React Music Player
       </div>
       
-      <DisplaySong
+      <Player
       currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} 
         songProgress = {songProgress} setSongProgress = {setSongProgress} />
 

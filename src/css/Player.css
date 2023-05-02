@@ -17,15 +17,6 @@
     margin: 0;
 }
 
-input[type="range"] {
-    --range-progress: 0;
-}
-  
-input[type="range"]::before {
-    background: #f50;
-    width: var(--range-progress);
-}
-
 /*.column {
     flex: 50%;
     padding: 5px;

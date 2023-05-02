@@ -3,12 +3,22 @@ import { useState, useRef } from 'react';
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
-import './css/DisplaySong.css';
+import './css/Player.css';
 
 function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSongProgress}) {
 	const playerRef = useRef(null);
 
 	const [duration, setDuration] = useState(0);
+
+	const convertDuration = (duration) => {
+		return (
+			<span>
+				{Math.floor(duration / 60)}
+				:
+				{(duration % 60 < 10) ? '0' + (duration % 60) : duration % 60}
+			</span>
+		)
+	}
 
 	const handleChange = (progress) => {
 		if (isPlaying) {
@@ -86,7 +96,9 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 			</div>
 
 			<div>
-				<span>{Math.floor(songProgress)}</span>
+				<span>{convertDuration(Math.floor(songProgress))}</span>
+				<span>&nbsp;/&nbsp;</span>
+				<span>{convertDuration(Math.floor(duration))}</span>
 			</div>
 		</div>
 	);
