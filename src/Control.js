@@ -3,11 +3,17 @@ import { ImNext2 } from "react-icons/im";
 import { ImPrevious2 } from "react-icons/im";
 import { ImPlay3 } from "react-icons/im";
 import { ImStop2 } from "react-icons/im";
+import Slider from "rc-slider";
+import 'rc-slider/assets/index.css';
 
 import './css/Control.css';
 
-function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress}) {
+function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume}) {
 	const size = '40';
+
+	const handleChangeVolume = (volume) => {
+		setVolume(volume);
+	}
 
 	const playStop = () => {
 		setIsPlaying(!isPlaying);
@@ -33,6 +39,15 @@ function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongInde
 
 	return (
         <div >
+			<Slider className='volume'
+				defaultValue = {0}
+				min = {0}
+				max = {1}
+				step = {0.05}
+				onChange = {handleChangeVolume}
+				value = {volume}
+			/>
+
 			<IconContext.Provider value={{ className: 'react-icons' }}>
 				<ImPrevious2 size={size} onClick={previousSong} />
 				

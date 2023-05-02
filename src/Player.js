@@ -5,11 +5,10 @@ import 'rc-slider/assets/index.css';
 
 import './css/Player.css';
 
-function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSongProgress}) {
+function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSongProgress, volume, setVolume}) {
 	const playerRef = useRef(null);
 
 	const [duration, setDuration] = useState(0);
-	const [volume, setVolume] = useState(0.8);
 
 	const convertDuration = (duration) => {
 		return (
@@ -21,7 +20,7 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 		)
 	}
 
-	const handleChange = (progress) => {
+	const handleChangeSongProgress = (progress) => {
 		if (isPlaying) {
 			setSongProgress(progress);
 			playerRef.current.seekTo(progress, "seconds");
@@ -96,9 +95,6 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 						soundcloud: {
 							options: {
 								auto_play: false,
-								buying: false,
-								sharing: false,
-								download: false,
 							}
 						},
 
@@ -111,19 +107,25 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 				/>
 
 				<Slider
+					trackStyle={{ backgroundColor: 'red', height: 5 }}
+					handleStyle={{
+					borderColor: 'gray',
+						backgroundColor: 'red',
+					}}
+					railStyle={{ backgroundColor: 'gray', height: 5 }}
 					defaultValue = {0}
 					min = {0}
 					max = {duration}
 					step = {1}
-					onChange = {handleChange}
+					onChange = {handleChangeSongProgress}
 					value = {songProgress}
 				/>
 			</div>
 
 			<div>
-				<span>{convertDuration(Math.floor(songProgress))}</span>
+				<span>{convertDuration(Math.floor(songProgress))}</span>  
 				<span>&nbsp;/&nbsp;</span>
-				<span>{convertDuration(Math.floor(duration))}</span>
+				<span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration-1))}</span>
 			</div>
 		</div>
 	);

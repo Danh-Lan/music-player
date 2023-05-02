@@ -13,6 +13,7 @@ function App() {
   const [currentSong, setCurrentSong] = useState(musicList[0]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [songProgress, setSongProgress] = useState(0);
+  const [volume, setVolume] = useState(0.8);
   
   const handleKeyPress = (event) => {
 		if (event.key === ' ') {
@@ -21,23 +22,26 @@ function App() {
 	};
 
   return (
-    <div className="Music-site" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)}>
+    <div className="music-site" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)}>
       <div className="title">
         React Music Player
       </div>
       
       <Player
       currentSong = {currentSong} isPlaying = {isPlaying} setIsPlaying={setIsPlaying} 
-        songProgress = {songProgress} setSongProgress = {setSongProgress} />
+        songProgress = {songProgress} setSongProgress = {setSongProgress} 
+        volume = {volume} setVolume = {setVolume} />
 
       <Control isPlaying={isPlaying} setIsPlaying={setIsPlaying} 
         song={song}
         setCurrentSong={setCurrentSong}
         currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex}
-        songProgress = {songProgress} setSongProgress = {setSongProgress} />
+        songProgress = {songProgress} setSongProgress = {setSongProgress} 
+        volume = {volume} setVolume = {setVolume} />
       
       <RandomButton song={song} setCurrentSong={setCurrentSong}
-        setCurrentSongIndex={setCurrentSongIndex} />
+        setCurrentSongIndex={setCurrentSongIndex} 
+        songProgress = {songProgress} setSongProgress = {setSongProgress} />
     </div>
   );
 }
