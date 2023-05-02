@@ -15,7 +15,7 @@ function App() {
   const [songProgress, setSongProgress] = useState(0);
   
   const handleKeyPress = (event) => {
-		if(event.key === ' '){
+		if (event.key === ' ') {
 			setIsPlaying(!isPlaying);
 		}
 	};

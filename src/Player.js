@@ -47,8 +47,25 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 		setSongProgress(progress.playedSeconds);
 	};
 
+	const handleKeyDown = (event) => {
+		if (isPlaying) {
+			console.log(event.key);
+			if (event.key === "ArrowRight") {
+				const seek = Math.min(songProgress + 5, duration);
+				
+				setSongProgress(seek);
+				playerRef.current.seekTo(seek, "seconds");
+			} else if (event.key === "ArrowLeft") {
+				const seek = Math.max(songProgress - 5, 0);
+				
+				setSongProgress(seek);
+				playerRef.current.seekTo(seek, "seconds");
+			}
+		}
+	};
+
 	return (
-		<div className = "video-container">
+		<div className = "video-container" tabIndex="1" onKeyDown = {handleKeyDown}>
 			<div>
 				{currentSong.title}
 			</div>
@@ -73,7 +90,6 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 								buying: false,
 								sharing: false,
 								download: false,
-								showArtwork: false,
 							}
 						},
 
