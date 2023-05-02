@@ -9,6 +9,7 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 	const playerRef = useRef(null);
 
 	const [duration, setDuration] = useState(0);
+	const [volume, setVolume] = useState(0.8);
 
 	const convertDuration = (duration) => {
 		return (
@@ -49,7 +50,6 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 
 	const handleKeyDown = (event) => {
 		if (isPlaying) {
-			console.log(event.key);
 			if (event.key === "ArrowRight") {
 				const seek = Math.min(songProgress + 5, duration);
 				
@@ -61,6 +61,14 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 				setSongProgress(seek);
 				playerRef.current.seekTo(seek, "seconds");
 			}
+		}
+
+		if (event.key === "ArrowUp") {
+			const newVolume = Math.min(volume + 0.1, 1);
+			setVolume(newVolume);
+		} else if (event.key === "ArrowDown") {
+			const newVolume = Math.max(volume - 0.1, 0);
+			setVolume(newVolume);
 		}
 	};
 
@@ -75,6 +83,7 @@ function DisplaySong({currentSong, isPlaying, setIsPlaying, songProgress, setSon
 					ref = {playerRef}
 					key = {currentSong.url} /* force reload to deal with bad duration time issue */
 					url = {currentSong.url}
+					volume = {volume}
 					playing = {isPlaying}
 					controls = {false}
 					onPlay = {handlePlay}
