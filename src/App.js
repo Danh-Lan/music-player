@@ -119,20 +119,22 @@ function App() {
 						<span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration-1))}</span>
 					</div>
 
-					<Control isPlaying={isPlaying} setIsPlaying={setIsPlaying}
-						audio={playerRef}
-						song={song}
-						setCurrentSong={setCurrentSong}
-						currentSongIndex={currentSongIndex} setCurrentSongIndex={setCurrentSongIndex}
-						duration={duration}
-						songProgress={songProgress} setSongProgress={setSongProgress} 
-						volume={volume} setVolume={setVolume} />
+					<Control isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
+						audio = {playerRef}
+						song = {song}
+						setCurrentSong = {setCurrentSong}
+						currentSongIndex = {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}
+						duration = {duration}
+						songProgress = {songProgress} setSongProgress = {setSongProgress} 
+						volume = {volume} setVolume = {setVolume} 
+					/>
+
+					<RandomButton song = {song} setCurrentSong = {setCurrentSong}
+						setCurrentSongIndex = {setCurrentSongIndex} 
+						songProgress = {songProgress} setSongProgress = {setSongProgress} 
+					/>
 				</div>
 			</div>
-		
-			<RandomButton song={song} setCurrentSong={setCurrentSong}
-				setCurrentSongIndex={setCurrentSongIndex} 
-				songProgress = {songProgress} setSongProgress = {setSongProgress} />
 		</div>
   	);
 }
