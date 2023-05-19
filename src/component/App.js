@@ -18,19 +18,6 @@ function App() {
 	const [volume, setVolume] = useState(0.8);
 	const [duration, setDuration] = useState(0);
 
-  	const handleKeyPress = (event) => {
-		if (event.key === ' ') {
-			setIsPlaying(!isPlaying);
-		}
-	};
-
-	
-
-	const handleDuration = (duration) => {
-		setDuration(duration);
-		console.log("duration : ", duration);
-	}
-
 	const handlePlay = () => {
 		setIsPlaying(true);
 	};
@@ -46,32 +33,13 @@ function App() {
 		setSongProgress(progress.playedSeconds);
 	};
 
-  	const handleKeyDown = (event) => {
-		if (isPlaying) {
-			if (event.key === "ArrowRight") {
-				const seek = Math.min(songProgress + 5, duration);
-				
-				setSongProgress(seek);
-				playerRef.current.seekTo(seek, "seconds");
-			} else if (event.key === "ArrowLeft") {
-				const seek = Math.max(songProgress - 5, 0);
-				
-				setSongProgress(seek);
-				playerRef.current.seekTo(seek, "seconds");
-			}
-		}
-
-		if (event.key === "ArrowUp") {
-			const newVolume = Math.min(volume + 0.1, 1);
-			setVolume(newVolume);
-		} else if (event.key === "ArrowDown") {
-			const newVolume = Math.max(volume - 0.1, 0);
-			setVolume(newVolume);
-		}
-	};
+	const handleDuration = (duration) => {
+		setDuration(duration);
+		console.log("duration : ", duration);
+	}
 
   	return (
-		<div className="main" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)} onKeyDown = {handleKeyDown}>
+		<div className="main" >
 			<div className="title">
 				React Music Player
 			</div>

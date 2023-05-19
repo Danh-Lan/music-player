@@ -54,8 +54,38 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 		)
 	}
 
+	const handleKeyDown = (event) => {
+		if (isPlaying) {
+			if (event.key === "ArrowRight") {
+				const seek = Math.min(songProgress + 5, duration);
+				
+				setSongProgress(seek);
+				audio.current.seekTo(seek, "seconds");
+			} else if (event.key === "ArrowLeft") {
+				const seek = Math.max(songProgress - 5, 0);
+				
+				setSongProgress(seek);
+				audio.current.seekTo(seek, "seconds");
+			}
+		}
+
+		if (event.key === "ArrowUp") {
+			const newVolume = Math.min(volume + 0.1, 1);
+			setVolume(newVolume);
+		} else if (event.key === "ArrowDown") {
+			const newVolume = Math.max(volume - 0.1, 0);
+			setVolume(newVolume);
+		}
+	};
+
+	const handleKeyPress = (event) => {
+		if (event.key === ' ') {
+			setIsPlaying(!isPlaying);
+		}
+	};
+
 	return (
-        <>
+        <div tabIndex="1" onKeyDown = {handleKeyDown} onKeyPress={(e) => handleKeyPress(e)}>
 			<Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
 				<VolumeDown/>
 				<Slider
@@ -102,9 +132,7 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 			<IconButton onClick={nextSong} sx={{ minHeight: 0, minWidth: 0, padding: 0 }}>
 				<SkipNextIcon sx={{ fontSize: 50 }} />
 			</IconButton>
-
-			
-		</>
+		</div>
 	);
 }
 
