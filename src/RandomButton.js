@@ -10,7 +10,7 @@ function RandomButton({song, setCurrentSong, setCurrentSongIndex, songProgress, 
 	};
 
 	return (
-		<button className="random-button" onClick={randomSong}>I'm feeling spicy today</button>
+		<button className="random-button" onClick={randomSong}>Play a random song</button>
 	);
 }
 

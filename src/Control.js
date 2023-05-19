@@ -58,10 +58,10 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 			<Slider
 				trackStyle={{ backgroundColor: 'red', height: 5 }}
 				handleStyle={{
-				borderColor: 'gray',
+				borderColor: 'red',
 				backgroundColor: 'red',
 				}}
-				railStyle={{ backgroundColor: 'gray', height: 5 }}
+				railStyle={{ backgroundColor: 'lightgray', height: 5 }}
 				defaultValue = {0}
 				min = {0}
 				max = {duration}

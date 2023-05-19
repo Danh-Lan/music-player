@@ -8,7 +8,7 @@ body {
 	background-image: linear-gradient(to right, gray, silver);
 }
 
-.music-site {
+.main {
 	text-align: center;
 }
 
@@ -28,13 +28,20 @@ body {
 
 .player-wrapper {
     position: relative;
+    padding: 10px;
+    margin: 10px;
+    background-color: lightslategray;
 }
 
 .player {
-    border: 2px solid #7b2cbf;
     object-fit: cover;
     padding: 0;
     margin: 0;
+    
+}
+
+.footer {
+    text-decoration: none;
 }
 
 /*.column {

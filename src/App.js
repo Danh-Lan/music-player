@@ -3,7 +3,6 @@ import musicList from './data/MusicList.js';
 import ReactPlayer from 'react-player';
 import Control from './Control.js';
 import 'rc-slider/assets/index.css';
-
 import { useState, useRef } from 'react';
 
 import './css/App.css';
@@ -80,17 +79,17 @@ function App() {
 	};
 
   	return (
-		<div className="music-site" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)} onKeyDown = {handleKeyDown}>
+		<div className="main" tabIndex="1" onKeyPress={(e) => handleKeyPress(e)} onKeyDown = {handleKeyDown}>
 			<div className="title">
 				React Music Player
 			</div>
 		
 			<div className = "video-container">
-				<div>
-					{currentSong.title}
-				</div>
-			
 				<div className="player-wrapper">
+					<div>
+						{currentSong.title}
+					</div>
+
 					<ReactPlayer className = "player"
 						ref = {playerRef}
 						key = {currentSong.url} /* force reload to deal with bad duration time issue */
@@ -107,33 +106,38 @@ function App() {
 						config={{
 							soundcloud: {
 								options: {
-								auto_play: false,
+									auto_play: false,
 								}
 							},
 						}}
 					/>
 
-					<div>
-						<span>{convertDuration(Math.floor(songProgress))}</span>  
-						<span>&nbsp;/&nbsp;</span>
-						<span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration-1))}</span>
+					<div className = "control-bar">
+						<div>
+							<span>{convertDuration(Math.floor(songProgress))}</span>  
+							<span>&nbsp;/&nbsp;</span>
+							<span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration-1))}</span>
+						</div>
+						<Control isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
+							audio = {playerRef}
+							song = {song}
+							setCurrentSong = {setCurrentSong}
+							currentSongIndex = {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}
+							duration = {duration}
+							songProgress = {songProgress} setSongProgress = {setSongProgress} 
+							volume = {volume} setVolume = {setVolume} 
+						/>
+
+						<RandomButton song = {song} setCurrentSong = {setCurrentSong}
+							setCurrentSongIndex = {setCurrentSongIndex} 
+							songProgress = {songProgress} setSongProgress = {setSongProgress} 
+						/>
 					</div>
-
-					<Control isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
-						audio = {playerRef}
-						song = {song}
-						setCurrentSong = {setCurrentSong}
-						currentSongIndex = {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}
-						duration = {duration}
-						songProgress = {songProgress} setSongProgress = {setSongProgress} 
-						volume = {volume} setVolume = {setVolume} 
-					/>
-
-					<RandomButton song = {song} setCurrentSong = {setCurrentSong}
-						setCurrentSongIndex = {setCurrentSongIndex} 
-						songProgress = {songProgress} setSongProgress = {setSongProgress} 
-					/>
 				</div>
+
+				<a href={"https://github.com/Danh-Lan/music-player"} target="_blank" className="footer">
+					Github
+				</a>
 			</div>
 		</div>
   	);
