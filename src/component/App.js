@@ -1,11 +1,11 @@
 import RandomButton from './RandomButton.js';
-import musicList from './data/MusicList.js';
+import musicList from '../data/MusicList.js';
 import ReactPlayer from 'react-player';
 import Control from './Control.js';
 import 'rc-slider/assets/index.css';
 import { useState, useRef } from 'react';
 
-import './css/App.css';
+import '../style/App.css';
 
 function App() {
 	const playerRef = useRef(null);
@@ -24,15 +24,7 @@ function App() {
 		}
 	};
 
-	const convertDuration = (duration) => {
-		return (
-			<span>
-				{Math.floor(duration / 60)}
-				:
-				{(duration % 60 < 10) ? '0' + (duration % 60) : duration % 60}
-			</span>
-		)
-	}
+	
 
 	const handleDuration = (duration) => {
 		setDuration(duration);
@@ -113,11 +105,6 @@ function App() {
 					/>
 
 					<div className = "control-bar">
-						<div>
-							<span>{convertDuration(Math.floor(songProgress))}</span>  
-							<span>&nbsp;/&nbsp;</span>
-							<span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration-1))}</span>
-						</div>
 						<Control isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
 							audio = {playerRef}
 							song = {song}
@@ -127,7 +114,7 @@ function App() {
 							songProgress = {songProgress} setSongProgress = {setSongProgress} 
 							volume = {volume} setVolume = {setVolume} 
 						/>
-
+						<div></div>
 						<RandomButton song = {song} setCurrentSong = {setCurrentSong}
 							setCurrentSongIndex = {setCurrentSongIndex} 
 							songProgress = {songProgress} setSongProgress = {setSongProgress} 

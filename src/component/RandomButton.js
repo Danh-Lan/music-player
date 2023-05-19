@@ -1,4 +1,4 @@
-import './css/RandomButton.css';
+import '../style/RandomButton.css';
 
 function RandomButton({song, setCurrentSong, setCurrentSongIndex, songProgress, setSongProgress}) {
 	const randomSong = () => {
