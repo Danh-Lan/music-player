@@ -8,7 +8,7 @@ import 'rc-slider/assets/index.css';
 
 import './css/Control.css';
 
-function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume}) {
+function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume}) {
 	const size = '40';
 
 	const handleChangeVolume = (volume) => {
@@ -37,17 +37,15 @@ function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongInde
 		setCurrentSong(song[newSongIndex]);
 	};
 
-	return (
-        <div >
-			<Slider className='volume'
-				defaultValue = {0}
-				min = {0}
-				max = {1}
-				step = {0.05}
-				onChange = {handleChangeVolume}
-				value = {volume}
-			/>
+	const handleChangeSongProgress = (progress) => {
+		if (isPlaying) {
+			setSongProgress(progress);
+			audio.current.seekTo(progress, "seconds");
+		}
+	}
 
+	return (
+        <>
 			<IconContext.Provider value={{ className: 'react-icons' }}>
 				<ImPrevious2 size={size} onClick={previousSong} />
 				
@@ -56,7 +54,31 @@ function Control({isPlaying, setIsPlaying, song, setCurrentSong, currentSongInde
 				
 				<ImNext2 size={size} onClick={nextSong} />
 			</IconContext.Provider>
-		</div>
+
+			<Slider
+				trackStyle={{ backgroundColor: 'red', height: 5 }}
+				handleStyle={{
+				borderColor: 'gray',
+				backgroundColor: 'red',
+				}}
+				railStyle={{ backgroundColor: 'gray', height: 5 }}
+				defaultValue = {0}
+				min = {0}
+				max = {duration}
+				step = {1}
+				onChange = {handleChangeSongProgress}
+				value = {songProgress}
+			/>
+
+			<Slider className='volume'
+				defaultValue = {0}
+				min = {0}
+				max = {1}
+				step = {0.05}
+				onChange = {handleChangeVolume}
+				value = {volume}
+			/>
+		</>
 	);
 }
 
