@@ -135,7 +135,7 @@ function App() {
 					</div>
 				</div>
 
-				<a href={"https://github.com/Danh-Lan/music-player"} target="_blank" className="footer">
+				<a href={"https://github.com/Danh-Lan/music-player"} target="_blank" rel="noreferrer" className="footer">
 					Github
 				</a>
 			</div>
