@@ -1,6 +1,6 @@
 import RandomButton from './RandomButton.js';
 import musicList from '../data/MusicList.js';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 import Control from './Control.js';
 import 'rc-slider/assets/index.css';
 import { useState, useRef } from 'react';
@@ -17,6 +17,7 @@ function App() {
 	const [songProgress, setSongProgress] = useState(0);
 	const [volume, setVolume] = useState(0.8);
 	const [duration, setDuration] = useState(0);
+	const [loop, setLoop] = useState(false);
 
 	const handlePlay = () => {
 		setIsPlaying(true);
@@ -56,13 +57,14 @@ function App() {
 						url = {currentSong.url}
 						volume = {volume}
 						playing = {isPlaying}
+						loop = {loop}
 						controls = {false}
 						onPlay = {handlePlay}
 						onPause = {handlePause}
 						onEnded = {handleEnded}
 						onProgress = {handleProgress}
 						onDuration = {handleDuration}
-
+		
 						config={{
 							soundcloud: {
 								options: {
@@ -80,7 +82,8 @@ function App() {
 							currentSongIndex = {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}
 							duration = {duration}
 							songProgress = {songProgress} setSongProgress = {setSongProgress} 
-							volume = {volume} setVolume = {setVolume} 
+							volume = {volume} setVolume = {setVolume}
+							loop = {loop} setLoop = {setLoop}
 						/>
 						<div></div>
 						<RandomButton song = {song} setCurrentSong = {setCurrentSong}

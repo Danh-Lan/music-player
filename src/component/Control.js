@@ -5,6 +5,8 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 
 import Slider from "rc-slider";
@@ -12,7 +14,7 @@ import 'rc-slider/assets/index.css';
 
 import '../style/Control.css';
 
-function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume}) {
+function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop}) {
 	const handleChangeVolume = (newVolume) => {
 		setVolume(newVolume);
 	};
@@ -84,6 +86,10 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 		}
 	};
 
+	const handleLoop = () => {
+		setLoop(!loop); 
+	};
+
 	return (
         <div tabIndex="1" onKeyDown = {handleKeyDown} onKeyPress={(e) => handleKeyPress(e)}>
 			<Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
@@ -97,6 +103,15 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 					value = {volume}
 				/>
 				<VolumeUp/>
+
+				<FormControlLabel control=
+					{<Switch 
+						checked={loop}
+      					onChange={handleLoop} 
+					/>} 
+					label="Loop" 
+				/>
+
 				<div>
 					<span>{convertDuration(Math.floor(songProgress))}</span>  
 					<span>&nbsp;/&nbsp;</span>
