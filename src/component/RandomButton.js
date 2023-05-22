@@ -1,10 +1,11 @@
 import '../style/RandomButton.css';
 
-function RandomButton({song, setCurrentSong, setCurrentSongIndex, songProgress, setSongProgress}) {
+function RandomButton({song, setCurrentSong, setCurrentSongIndex, setIsPlaying, setSongProgress}) {
 	const randomSong = () => {
 		const newSongIndex = Math.floor(Math.random()*song.length);
 
 		setSongProgress(0);
+		setIsPlaying(true);
 		setCurrentSong(song[newSongIndex]);
 		setCurrentSongIndex(newSongIndex);
 	};

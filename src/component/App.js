@@ -87,8 +87,9 @@ function App() {
 						/>
 						<div></div>
 						<RandomButton song = {song} setCurrentSong = {setCurrentSong}
+							setIsPlaying = {setIsPlaying}
 							setCurrentSongIndex = {setCurrentSongIndex} 
-							songProgress = {songProgress} setSongProgress = {setSongProgress} 
+							setSongProgress = {setSongProgress} 
 						/>
 					</div>
 				</div>
