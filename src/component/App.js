@@ -1,5 +1,5 @@
 import RandomButton from './RandomButton.js';
-import musicList from '../data/MusicList.js';
+import musicList from '../data/MusicList.json';
 import ReactPlayer from 'react-player/lazy';
 import Control from './Control.js';
 import 'rc-slider/assets/index.css';
