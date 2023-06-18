@@ -62,18 +62,16 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 	}
 
 	const handleKeyDown = (event) => {
-		if (isPlaying) {
-			if (event.key === "ArrowRight") {
-				const seek = Math.min(songProgress + 5, duration);
-				
-				setSongProgress(seek);
-				audio.current.seekTo(seek, "seconds");
-			} else if (event.key === "ArrowLeft") {
-				const seek = Math.max(songProgress - 5, 0);
-				
-				setSongProgress(seek);
-				audio.current.seekTo(seek, "seconds");
-			}
+		if (event.key === "ArrowRight") {
+			const seek = Math.min(songProgress + 5, duration);
+			
+			setSongProgress(seek);
+			audio.current.seekTo(seek, "seconds");
+		} else if (event.key === "ArrowLeft") {
+			const seek = Math.max(songProgress - 5, 0);
+			
+			setSongProgress(seek);
+			audio.current.seekTo(seek, "seconds");
 		}
 
 		if (event.key === "ArrowUp") {
