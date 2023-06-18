@@ -47,11 +47,16 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 	}
 
 	const convertDuration = (duration) => {
+		const hour = Math.floor(duration / 3600);
+		const minute = Math.floor((duration / 60) % 60);
+		const second = Math.floor(duration % 60);
+
 		return (
 			<span>
-				{Math.floor(duration / 60)}
+				{(hour > 0) ? hour+':' : ''}
+				{(minute < 10) ? '0'+minute : minute}
 				:
-				{(duration % 60 < 10) ? '0' + (duration % 60) : duration % 60}
+				{(second < 10) ? '0'+second : second}
 			</span>
 		)
 	}
