@@ -47,8 +47,8 @@ function App() {
 		
 			<div className = "video-container">
 				<div className="player-wrapper">
-					<div>
-						{currentSong.title}
+					<div style={{ fontSize: 24 }}> 
+						{currentSong.artist} - {currentSong.title}
 					</div>
 
 					<ReactPlayer className = "player"
