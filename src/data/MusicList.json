@@ -1,19 +1,23 @@
 [
 	{
-		"title": "You know what song this is",
-		"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+		"title": "Never gonna give you up",
+		"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+		"artist": "Rick Astley"
 	},
 	{
 		"title": "It's my life",
-		"url": "https://www.youtube.com/watch?v=vx2u5uUu3DE"
+		"url": "https://www.youtube.com/watch?v=vx2u5uUu3DE",
+		"artist": "Bon Jovi"
 	},
 	{
 		"title": "Hazy moon",
-		"url" : "https://soundcloud.com/officialhatsunemiku/hazy-moon-hatsune-miku"
+		"url" : "https://soundcloud.com/officialhatsunemiku/hazy-moon-hatsune-miku",
+		"artist": "Hatsune Miku"
 	},
 	{
 		"title": "The wind rises (CN version)",
-		"url" : "https://soundcloud.com/ackermannn/the-wind-rises-zhou-shen"
+		"url" : "https://soundcloud.com/ackermannn/the-wind-rises-zhou-shen",
+		"artist": "周深 (Zhou Shen)"
 	},
 	{
 		"title": "Video longer than an hour",

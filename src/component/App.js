@@ -64,14 +64,6 @@ function App() {
 						onEnded = {handleEnded}
 						onProgress = {handleProgress}
 						onDuration = {handleDuration}
-		
-						config={{
-							soundcloud: {
-								options: {
-									auto_play: false,
-								}
-							},
-						}}
 					/>
 
 					<div className = "control-bar">
