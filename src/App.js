@@ -1,11 +1,11 @@
-import RandomButton from './RandomButton.js';
-import musicList from '../data/MusicList.json';
+import RandomButton from './component/RandomButton.js';
+import musicList from './data/MusicList.json';
 import ReactPlayer from 'react-player/lazy';
-import Control from './Control.js';
+import Control from './component/Control.js';
 import 'rc-slider/assets/index.css';
 import { useState, useRef } from 'react';
 
-import '../style/App.css';
+import './style/App.css';
 
 function App() {
 	const playerRef = useRef(null);
