@@ -1,12 +1,11 @@
 # React music player
-The motivation to make this project is avoid ads and I can listen to songs I like in 1 click.
-Currently I'm working on a fullstack version with ASP.NET as backend
+The motivation to make this project is to avoid ads and I can listen to songs I like in 1 click.
 
 The project is created using CRA (Create React App).
 
 It has some basic functionality : play/stop, auto-repeat, play previous song/next song, volume handle, seek to a specific time
 
-Data is taken from `/data/MusicList.json`
+Data is taken from `/data/MusicList.json`, I only include old song, as I would listen to newer song directly on music platforms to support artists
 
 ## Dependencies
 
