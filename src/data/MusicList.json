@@ -178,5 +178,35 @@
 	  "url": "https://www.youtube.com/watch?v=BWf-eARnf6U",
 	  "artist": "Michael Jackson",
 	  "language": "English"
+	},
+	{
+		"title": "Timber",
+		"url": "https://www.youtube.com/watch?v=hHUbLv4ThOo",
+		"artist": "Pitbull",
+		"language": "English"
+	},
+	{
+		"title": "You're My Heart, You're My Soul",
+		"url": "https://www.youtube.com/watch?v=G2qsC9BMSw0",
+		"artist": "Modern Talking",
+		"language": "English"
+	},
+	{
+		"title": "You're My Heart, You're My Soul",
+		"url": "https://www.youtube.com/watch?v=G2qsC9BMSw0",
+		"artist": "Modern Talking",
+		"language": "English"
+	},
+	{
+		"title": "Brother Louie",
+		"url": "https://www.youtube.com/watch?v=Lp2qcCrdBLA",
+		"artist": "Modern Talking",
+		"language": "English"
+	},
+	{
+		"title": "Cheri Cheri Lady",
+		"url": "https://www.youtube.com/watch?v=eNvUS-6PTbs",
+		"artist": "Modern Talking",
+		"language": "English"
 	}
   ]
