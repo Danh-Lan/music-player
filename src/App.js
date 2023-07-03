@@ -10,7 +10,9 @@ import './style/App.css';
 function App() {
 	const playerRef = useRef(null);
 
-	const [song, setSong] = useState(musicList);
+	const playlist = musicList;
+	// default, loop, autoplay or randomly autoplay
+	const [playOption, setPlayOption] = useState("default");
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentSong, setCurrentSong] = useState(musicList[0]);
 	const [currentSongIndex, setCurrentSongIndex] = useState(0);
@@ -27,7 +29,27 @@ function App() {
 		setIsPlaying(false);
 	};
 	const handleEnded = () => {
-		setIsPlaying(false);
+		if (playOption === "deafult") {
+			setIsPlaying(false);
+		} else if (playOption === "loop") {
+			// loop is handled in control.js, handlePlayOption
+		} else if (playOption === "autoplay") {
+			const newSongIndex = (currentSongIndex + 1) % playlist.length;
+
+			setSongProgress(0);
+			setIsPlaying(true);
+			setCurrentSongIndex(newSongIndex);
+			setCurrentSong(playlist[newSongIndex]);
+		} else if (playOption === "random autoplay") {
+			const newSongIndex = Math.floor(Math.random()*playlist.length);
+
+			setSongProgress(0);
+			setIsPlaying(true);
+			setCurrentSongIndex(newSongIndex);
+			setCurrentSong(playlist[newSongIndex]);
+		}
+
+		console.log(playOption);
 	};
 
 	const handleProgress = (progress) => {
@@ -36,7 +58,6 @@ function App() {
 
 	const handleDuration = (duration) => {
 		setDuration(duration);
-		console.log("duration : ", duration);
 	}
 
   	return (
@@ -67,18 +88,18 @@ function App() {
 					/>
 
 					<div className = "control-bar">
-						<Control isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
-							audio = {playerRef}
-							song = {song}
-							setCurrentSong = {setCurrentSong}
+						<Control audio = {playerRef}
+							playlist = {playlist} setCurrentSong = {setCurrentSong}
+							playOption = {playOption} setPlayOption = {setPlayOption}
 							currentSongIndex = {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}
+							isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
 							duration = {duration}
 							songProgress = {songProgress} setSongProgress = {setSongProgress} 
 							volume = {volume} setVolume = {setVolume}
 							loop = {loop} setLoop = {setLoop}
 						/>
 						<div></div>
-						<RandomButton song = {song} setCurrentSong = {setCurrentSong}
+						<RandomButton playlist = {playlist} setCurrentSong = {setCurrentSong}
 							setIsPlaying = {setIsPlaying}
 							setCurrentSongIndex = {setCurrentSongIndex} 
 							setSongProgress = {setSongProgress} 

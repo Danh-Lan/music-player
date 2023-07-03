@@ -5,16 +5,33 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
+
+import MuiToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
 import '../style/Control.css';
 
-function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop}) {
+function Control({audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop}) {
+	const ToggleButton = styled(MuiToggleButton)(({ selectedcolor }) => ({
+		'&.Mui-selected, &.Mui-selected:hover': {
+			color: 'white',
+			backgroundColor: selectedcolor,
+		},
+	}));
+	  
+	const theme = createTheme({
+		palette: {
+			text: {
+				primary: '#00ff00',
+			},
+		},
+	});
+
 	const handleChangeVolume = (newVolume) => {
 		setVolume(newVolume);
 	};
@@ -24,21 +41,21 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 	};
 
 	const previousSong = () => {
-		const newSongIndex = (currentSongIndex + (song.length-1)) % song.length;
+		const newSongIndex = (currentSongIndex + (playlist.length-1)) % playlist.length;
 		
 		setSongProgress(0);
 		setIsPlaying(true);
 		setCurrentSongIndex(newSongIndex);
-		setCurrentSong(song[newSongIndex]);
+		setCurrentSong(playlist[newSongIndex]);
 	};
 
 	const nextSong = () => {
-		const newSongIndex = (currentSongIndex + 1) % song.length;
+		const newSongIndex = (currentSongIndex + 1) % playlist.length;
 
 		setSongProgress(0);
 		setIsPlaying(true);
 		setCurrentSongIndex(newSongIndex);
-		setCurrentSong(song[newSongIndex]);
+		setCurrentSong(playlist[newSongIndex]);
 	};
 
 	const handleChangeSongProgress = (progress) => {
@@ -69,13 +86,9 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 	};
 
 	const handleKeyPress = (event) => {
-		if (event.key === ' ') {
+		if (event.key === ' ') { // spacebar
 			setIsPlaying(!isPlaying);
 		}
-	};
-
-	const handleLoop = () => {
-		setLoop(!loop); 
 	};
 
 	const convertDuration = (duration) => {
@@ -93,6 +106,18 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 		)
 	}
 
+	const handlePlayOption = (event, newPlayOption) => {
+		if (newPlayOption != null) {
+			setPlayOption(newPlayOption);
+
+			if (newPlayOption === "loop") {
+				setLoop(true);
+			} else {
+				setLoop(false);
+			}
+		}
+	};
+
 	return (
         <div tabIndex="1" onKeyDown = {handleKeyDown} onKeyPress={(e) => handleKeyPress(e)}>
 			<Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
@@ -107,20 +132,26 @@ function Control({audio, duration, isPlaying, setIsPlaying, song, setCurrentSong
 				/>
 				<VolumeUp/>
 
-				<FormControlLabel control=
-					{<Switch 
-						checked={loop}
-      					onChange={handleLoop} 
-					/>} 
-					label="Loop" 
-				/>
-
 				<div>
 					<span>{convertDuration(Math.floor(songProgress))}</span>  
 					<span>&nbsp;/&nbsp;</span>
 					<span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration-1))}</span>
 				</div>
 			</Stack>
+
+			<ThemeProvider theme={theme}>
+				<ToggleButtonGroup
+					value={playOption}
+					exclusive
+					onChange={handlePlayOption}
+					size='small'
+				>
+					<ToggleButton value="default" selectedcolor="#00abc0"> Default</ToggleButton>
+					<ToggleButton value="loop" selectedcolor="#00abc0">Loop</ToggleButton>
+					<ToggleButton value="autoplay" selectedcolor="#00abc0">Autoplay</ToggleButton>
+					<ToggleButton value="random autoplay" selectedcolor="#00abc0">Random autoplay</ToggleButton>
+				</ToggleButtonGroup>
+			</ThemeProvider>
 
 			<Slider
 				trackStyle={{ backgroundColor: 'red', height: 5 }}
