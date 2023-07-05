@@ -138,12 +138,6 @@
 	  "language": "Chinese"
 	},
 	{
-	  "title": "Endless Love",
-	  "url": "https://www.youtube.com/watch?v=q8C0lw0ll98",
-	  "artist": "Jackie Chan & Kim Hee Seon",
-	  "language": "Chinese"
-	},
-	{
 	  "title": "Young, Wild and Free",
 	  "url": "https://www.youtube.com/watch?v=Wa5B22KAkEk",
 	  "artist": "Snoop Dogg & Wiz Khalifa",
@@ -208,5 +202,17 @@
 		"url": "https://www.youtube.com/watch?v=eNvUS-6PTbs",
 		"artist": "Modern Talking",
 		"language": "English"
+	},
+	{
+		"title": "The Final Countdown",
+		"url": "https://www.youtube.com/watch?v=9jK-NcRmVcw",
+		"artist": "Europe",
+		"language": "English"
+	},
+	{
+		"title": "Dragostea Din Tei",
+		"url": "https://www.youtube.com/watch?v=YnopHCL1Jk8",
+		"artist": "O-Zone",
+		"language": "Romanian"
 	}
   ]
