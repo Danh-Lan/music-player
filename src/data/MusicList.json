@@ -1,218 +1,32 @@
 [
 	{
-	  "title": "It's My Life",
-	  "url": "https://www.youtube.com/watch?v=vx2u5uUu3DE",
-	  "artist": "Bon Jovi",
+	  "title": "Safe House",
+	  "url": "https://www.youtube.com/watch?v=VDFJn32p5L0",
+	  "artist": "Feather",
 	  "language": "English"
 	},
 	{
-	  "title": "The Wind Rises",
-	  "url": "https://www.youtube.com/watch?v=flNdw7Nhk2A",
-	  "artist": "周深 (Zhou Shen)",
-	  "language": "Chinese"
-	},
-	{
-	  "title": "My Love",
-	  "url": "https://www.youtube.com/watch?v=ulOb9gIGGd0",
-	  "artist": "Westlife",
-	  "language": "English"
-	},
-	{
-	  "title": "Nothing's Gonna Change My Love For You",
-	  "url": "https://www.youtube.com/watch?v=Qy7z_oiN6nQ",
-	  "artist": "Michael Masser, Gerry Goffin",
-	  "language": "English"
-	},
-	{
-	  "title": "Hey Brother",
-	  "url": "https://www.youtube.com/watch?v=6Cp6mKbRTQY",
-	  "artist": "Avicii",
-	  "language": "English"
-	},
-	{
-	  "title": "Waiting For Love",
-	  "url": "https://www.youtube.com/watch?v=-ncIVUXZla8",
-	  "artist": "Avicii",
-	  "language": "English"
-	},
-	{
-	  "title": "Wake Me Up",
-	  "url": "https://www.youtube.com/watch?v=IcrbM1l_BoI",
-	  "artist": "Avicii",
-	  "language": "English"
-	},
-	{
-	  "title": "Hi no Tori Houou Hen ED",
-	  "url": "https://www.youtube.com/watch?v=4PXl3FMv6vc",
-	  "artist": "渡辺 典子 (Watanabe Noriko) (Perfomer)",
-	  "language": "Japanese"
-	},
-	{
-	  "title": "In The End",
-	  "url": "https://www.youtube.com/watch?v=eVTXPUF4Oz4",
-	  "artist": "Linkin Park",
-	  "language": "English"
-	},
-	{
-	  "title": "Magic In The Air",
-	  "url": "https://www.youtube.com/watch?v=BAkqJT_sMKQ",
-	  "artist": "Magic System",
-	  "language": "French"
-	},
-	{
-	  "title": "Numb",
-	  "url": "https://www.youtube.com/watch?v=kXYiU_JCYtU",
-	  "artist": "Linkin Park",
-	  "language": "English"
-	},
-	{
-	  "title": "Perfect",
-	  "url": "https://www.youtube.com/watch?v=2Vv-BfVoq4g",
-	  "artist": "Ed Sheeran",
-	  "language": "English"
-	},
-	{
-	  "title": "Waka Waka",
-	  "url": "https://www.youtube.com/watch?v=pRpeEdMmmQ0",
-	  "artist": "Shakira",
-	  "language": "English"
-	},
-	{
-	  "title": "Wavin' Flag",
-	  "url": "https://www.youtube.com/watch?v=WTJSt4wP2ME",
-	  "artist": "K'naan",
-	  "language": "English"
-	},
-	{
-	  "title": "Ryhthm of The Rain",
-	  "url": "https://www.youtube.com/watch?v=P7T-PJD_M3U",
-	  "artist": "The Cascades",
-	  "language": "English"
-	},
-	{
-	  "title": "The Nights",
-	  "url": "https://www.youtube.com/watch?v=UtF6Jej8yb4",
-	  "artist": "Avicii",
-	  "language": "English"
-	},
-	{
-	  "title": "Breaking the Habit",
-	  "url": "https://www.youtube.com/watch?v=v2H4l9RpkwM",
-	  "artist": "Linkin Park",
-	  "language": "English"
-	},
-	{
-	  "title": "Zombie",
-	  "url": "https://www.youtube.com/watch?v=6Ejga4kJUts",
-	  "artist": "The Cranberries",
-	  "language": "English"
-	},
-	{
-	  "title": "Always With Me",
-	  "url": "https://www.youtube.com/watch?v=ESJ7TQvFFrA",
-	  "artist": "木村 弓 (Youmi Kimura)",
-	  "language": "Japanese"
-	},
-	{
-	  "title": "Merry-Go-Round of Life (Howl's Moving Castle OST)",
-	  "url": "https://www.youtube.com/watch?v=UwxatzcYf9Q",
-	  "artist": "Joe Hiraishi",
-	  "language": "Japanese"
-	},
-	{
-	  "title": "Monody",
-	  "url": "https://www.youtube.com/watch?v=B7xai5u_tnk",
-	  "artist": "TheFatRat",
-	  "language": "English"
-	},
-	{
-	  "title": "Unity",
-	  "url": "https://www.youtube.com/watch?v=n8X9_MgEdCg",
-	  "artist": "TheFatRat",
-	  "language": "English"
-	},
-	{
-	  "title": "有点甜 ( A Little Sweet)",
-	  "url": "https://www.youtube.com/watch?v=OtEJ6LGCW-U",
-	  "artist": "汪苏泷 (Silence Wang)",
-	  "language": "Chinese"
-	},
-	{
-	  "title": "Young, Wild and Free",
-	  "url": "https://www.youtube.com/watch?v=Wa5B22KAkEk",
-	  "artist": "Snoop Dogg & Wiz Khalifa",
-	  "language": "English"
-	},
-	{
-	  "title": "Sacrifice",
-	  "url": "https://www.youtube.com/watch?v=NrLkTZrPZA4",
-	  "artist": "Elton John",
-	  "language": "English"
-	},
-	{
-	  "title": "I'm Yours",
-	  "url": "https://www.youtube.com/watch?v=EkHTsc9PU2A",
-	  "artist": "Jason Mraz",
-	  "language": "English"
-	},
-	{
-	  "title": "Hazy Moon",
-	  "url": "https://www.youtube.com/watch?v=emHF7MuOQps&pp=ygUJaGF6eSBtb29u",
-	  "artist": "Hatsune Miku",
-	  "language": "Japanese"
-	},
-	{
-	  "title": "We Are The World",
-	  "url": "https://www.youtube.com/watch?v=9AjkUyX0rVw",
-	  "artist": "U.S.A. For Africa",
-	  "language": "English"
-	},
-	{
-	  "title": "Heal The World",
-	  "url": "https://www.youtube.com/watch?v=BWf-eARnf6U",
-	  "artist": "Michael Jackson",
-	  "language": "English"
-	},
-	{
-		"title": "Timber",
-		"url": "https://www.youtube.com/watch?v=hHUbLv4ThOo",
-		"artist": "Pitbull",
+		"title": "Smoke",
+		"url": "https://www.youtube.com/watch?v=RWn3Cnc3pWI",
+		"artist": "Feather & Lostboycrow",
 		"language": "English"
 	},
 	{
-		"title": "You're My Heart, You're My Soul",
-		"url": "https://www.youtube.com/watch?v=G2qsC9BMSw0",
-		"artist": "Modern Talking",
+		"title": "Keys",
+		"url": "https://www.youtube.com/watch?v=ZhXDLpz7yVs",
+		"artist": "Feather",
 		"language": "English"
 	},
 	{
-		"title": "You're My Heart, You're My Soul",
-		"url": "https://www.youtube.com/watch?v=G2qsC9BMSw0",
-		"artist": "Modern Talking",
+		"title": "Rise",
+		"url": "https://www.youtube.com/watch?v=EtM-N7y1nio",
+		"artist": "Feather",
 		"language": "English"
 	},
 	{
-		"title": "Brother Louie",
-		"url": "https://www.youtube.com/watch?v=Lp2qcCrdBLA",
-		"artist": "Modern Talking",
+		"title": "Smoke",
+		"url": "https://www.youtube.com/watch?v=v6aZSt3OBDA",
+		"artist": "Feather & Lostboycrow",
 		"language": "English"
-	},
-	{
-		"title": "Cheri Cheri Lady",
-		"url": "https://www.youtube.com/watch?v=eNvUS-6PTbs",
-		"artist": "Modern Talking",
-		"language": "English"
-	},
-	{
-		"title": "The Final Countdown",
-		"url": "https://www.youtube.com/watch?v=9jK-NcRmVcw",
-		"artist": "Europe",
-		"language": "English"
-	},
-	{
-		"title": "Dragostea Din Tei",
-		"url": "https://www.youtube.com/watch?v=YnopHCL1Jk8",
-		"artist": "O-Zone",
-		"language": "Romanian"
 	}
-  ]
+]
