@@ -48,8 +48,6 @@ function App() {
 			setCurrentSongIndex(newSongIndex);
 			setCurrentSong(playlist[newSongIndex]);
 		}
-
-		console.log(playOption);
 	};
 
 	const handleProgress = (progress) => {
@@ -62,10 +60,6 @@ function App() {
 
   	return (
 		<div className="main" >
-			<div className="title">
-				React Music Player
-			</div>
-		
 			<div className = "video-container">
 				<div className="player-wrapper">
 					<div style={{ fontSize: 24 }}> 

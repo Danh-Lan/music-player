@@ -12,12 +12,6 @@ body {
 	text-align: center;
 }
 
-.title {
-	display: flex;
-	text-align: left;
-	background-image: linear-gradient(to right, lightblue, lightgreen);
-}
-
 .video-container {
     display: flex;
     flex-direction: column;
