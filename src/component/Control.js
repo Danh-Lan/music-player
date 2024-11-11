@@ -7,29 +7,14 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import Stack from '@mui/material/Stack';
-import MuiToggleButton from '@mui/material/ToggleButton';
+import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { convertDuration } from '../utils';
 
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 
 const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop }) => {
-  const ToggleButton = styled(MuiToggleButton)(({ selectedcolor }) => ({
-    '&.Mui-selected, &.Mui-selected:hover': {
-      color: 'white',
-      backgroundColor: selectedcolor,
-    },
-  }));
-
-  const theme = createTheme({
-    palette: {
-      text: {
-        primary: '#00ff00',
-      },
-    },
-  });
-
   const handleChangeVolume = (newVolume) => {
     setVolume(newVolume);
   };
@@ -77,20 +62,6 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
     }
   };
 
-  const convertDuration = (duration) => {
-    const hour = Math.floor(duration / 3600);
-    const minute = Math.floor((duration / 60) % 60);
-    const second = Math.ceil(duration % 60);
-    return (
-      <span>
-        {(hour > 0) ? hour + ':' : ''}
-        {(minute < 10) ? '0' + minute : minute}
-        :
-        {(second < 10) ? '0' + second : second}
-      </span>
-    );
-  };
-
   const handlePlayOption = (event, newPlayOption) => {
     if (newPlayOption != null) {
       setPlayOption(newPlayOption);
@@ -121,7 +92,22 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
           <span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration - 1))}</span>
         </div>
       </Stack>
-      <ThemeProvider theme={theme}>
+      <Slider
+        trackStyle={{ backgroundColor: 'red', height: 5 }}
+        handleStyle={{
+          borderColor: 'red',
+          backgroundColor: 'red',
+        }}
+        railStyle={{
+          height: 5
+        }}
+        defaultValue={0}
+        min={0}
+        max={duration}
+        step={1}
+        onChange={handleChangeSongProgress}
+        value={songProgress}
+      />
         <ToggleButtonGroup
           value={playOption}
           exclusive
@@ -133,25 +119,7 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
           <ToggleButton value="autoplay" selectedcolor="#00abc0">Autoplay</ToggleButton>
           <ToggleButton value="random autoplay" selectedcolor="#00abc0">Random autoplay</ToggleButton>
         </ToggleButtonGroup>
-      </ThemeProvider>
-      <Slider
-        trackStyle={{ backgroundColor: 'red', height: 5 }}
-        handleStyle={{
-          borderColor: 'red',
-          backgroundColor: 'red',
-        }}
-        railStyle={{
-          backgroundColor: '#ccc', // Change the rail background color to a light grey
-          height: 5
-        }}
-        defaultValue={0}
-        min={0}
-        max={duration}
-        step={1}
-        onChange={handleChangeSongProgress}
-        value={songProgress}
-      />
-      <div className="control-bar">
+      <div>
         <IconButton onClick={previousSong} sx={{ minHeight: 0, minWidth: 0, padding: 0 }}>
           <SkipPreviousIcon sx={{ fontSize: 50 }} />
         </IconButton>
