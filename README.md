@@ -1,18 +1,11 @@
 # React music player
-The motivation to make this project is to avoid ads and I can listen to songs I like in 1 click.
 
-The project is created using CRA (Create React App).
+The project was created using Create React App. The main motivation was to learn basics of React, and have a minimalist music player to listen to songs I like.
 
-Functionality : play/stop, auto-repeat, play previous song/next song, volume handle, seek to a specific time, autoplay, play song in random order
+Functionalities : play/stop, loop, play previous/next song, volume handle, seek to a specific time, play next song automatically, play song in random order
 
-Data is taken from `/data/MusicList.json`, I only include old song, as I would listen to newer song directly on music platforms to support artists
+The site uses static JSON data taken directly from `/data/MusicList.json`
 
 ## Dependencies
 
-The project use react-player, rc-slider and material-ui, the link are below : 
-
-https://github.com/cookpete/react-player
-
-https://github.com/react-component/slider
-
-
+The project use [react-player](https://github.com/cookpete/react-player), [rc-slider](https://github.com/react-component/slider) and [Material UI](https://mui.com/material-ui/) 
