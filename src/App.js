@@ -58,55 +58,60 @@ function App() {
 		setDuration(duration);
 	}
 
-  	return (
-		<div className="main" >
-			<div className = "video-container">
-				<div className="player-wrapper">
-					<div style={{ fontSize: 24 }}> 
-						{currentSong.artist} - {currentSong.title}
-					</div>
-
-					<ReactPlayer className = "player"
-						ref = {playerRef}
-						key = {currentSong.url} /* force reload to deal with bad duration time issue */
-						url = {currentSong.url}
-						volume = {volume}
-						playing = {isPlaying}
-						loop = {loop}
-						controls = {false}
-						onPlay = {handlePlay}
-						onPause = {handlePause}
-						onEnded = {handleEnded}
-						onProgress = {handleProgress}
-						onDuration = {handleDuration}
-					/>
-
-					<div className = "control-bar">
-						<Control audio = {playerRef}
-							playlist = {playlist} setCurrentSong = {setCurrentSong}
-							playOption = {playOption} setPlayOption = {setPlayOption}
-							currentSongIndex = {currentSongIndex} setCurrentSongIndex = {setCurrentSongIndex}
-							isPlaying = {isPlaying} setIsPlaying = {setIsPlaying}
-							duration = {duration}
-							songProgress = {songProgress} setSongProgress = {setSongProgress} 
-							volume = {volume} setVolume = {setVolume}
-							loop = {loop} setLoop = {setLoop}
-						/>
-						<div></div>
-						<RandomButton playlist = {playlist} setCurrentSong = {setCurrentSong}
-							setIsPlaying = {setIsPlaying}
-							setCurrentSongIndex = {setCurrentSongIndex} 
-							setSongProgress = {setSongProgress} 
-						/>
-					</div>
-				</div>
-
-				<a href={"https://github.com/Danh-Lan/music-player"} target="_blank" rel="noreferrer" className="footer">
-					Github
-				</a>
-			</div>
-		</div>
-  	);
+  return (
+    <div className="main">
+      <div className="video-container">
+        <div className="player-wrapper">
+          <div style={{ fontSize: 24 }}>
+            {currentSong.artist} - {currentSong.title}
+          </div>
+          <ReactPlayer
+            className="player"
+            ref={playerRef}
+            key={currentSong.url}
+            url={currentSong.url}
+            volume={volume}
+            playing={isPlaying}
+            loop={loop}
+            controls={false}
+            onPlay={handlePlay}
+            onPause={handlePause}
+            onEnded={handleEnded}
+            onProgress={handleProgress}
+            onDuration={handleDuration}
+          />
+          <div className="control-bar">
+            <Control
+              audio={playerRef}
+              playlist={playlist}
+              setCurrentSong={setCurrentSong}
+              playOption={playOption}
+              setPlayOption={setPlayOption}
+              currentSongIndex={currentSongIndex}
+              setCurrentSongIndex={setCurrentSongIndex}
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+              duration={duration}
+              songProgress={songProgress}
+              setSongProgress={setSongProgress}
+              volume={volume}
+              setVolume={setVolume}
+              loop={loop}
+              setLoop={setLoop}
+            />
+            <div></div>
+            <RandomButton
+              playlist={playlist}
+              setCurrentSong={setCurrentSong}
+              setIsPlaying={setIsPlaying}
+              setCurrentSongIndex={setCurrentSongIndex}
+              setSongProgress={setSongProgress}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;

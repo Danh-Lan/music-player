@@ -1,4 +1,14 @@
+/* src/style/RandomButton.css */
 .random-button {
-	background-color: rgb(96, 224, 128);
-	font-size: 20px;
+  background-color: #60e080;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.random-button:hover {
+  background-color: #4cbf66;
 }
