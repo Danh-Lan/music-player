@@ -4,7 +4,7 @@ This project was created using Create React App. The main motivation was to lear
 
 The site uses static JSON data taken directly from `/data/MusicList.json`.
 
-Functionalities: Choose playlist base on category play/stop, loop, play previous/next song, volume control, seek to a specific time, play the next song automatically, shuffle the playlist
+Functionalities: Choose playlist base on category, play/stop, loop, play previous/next song, volume control, seek to a specific time, play the next song automatically, shuffle the playlist
 
 ## Dependencies
 
