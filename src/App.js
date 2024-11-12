@@ -71,51 +71,49 @@ function App() {
   };
 
   return (
-    <div className="video-container">
-      <div className="player-wrapper">
-        {(selectedCategory === "Classical") 
-          ? <h2 className="song-info">
-              {currentSong.performer ? `${currentSong.performer} - ` : ''}{currentSong.title} ({currentSong.composer})
-            </h2>
-          : <h2 className="song-info">{currentSong.composer} - {currentSong.title}</h2>        
-        }
-        <ReactPlayer
-          ref={playerRef}
-          key={currentSong.url}
-          url={currentSong.url}
-          volume={volume}
-          playing={isPlaying}
-          loop={loop}
-          controls={false}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onEnded={handleEnded}
-          onProgress={handleProgress}
-          onDuration={handleDuration}
-        />
-        <Control
-          audio={playerRef}
-          playlist={filteredPlaylist}
-          playOption={playOption}
-          setPlayOption={setPlayOption}
-          duration={duration}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          setCurrentSong={setCurrentSong}
-          currentSongIndex={currentSongIndex}
-          setCurrentSongIndex={setCurrentSongIndex}
-          songProgress={songProgress}
-          setSongProgress={setSongProgress}
-          volume={volume}
-          setVolume={setVolume}
-          loop={loop}
-          setLoop={setLoop}
-          categories={categories}
-          selectedCategory={selectedCategory}
-          handleCategoryChange={handleCategoryChange}
-          shufflePlaylist={shufflePlaylist}
-        />
-      </div>
+    <div className="player-wrapper">
+      {(selectedCategory === "Classical") 
+        ? <h2 className="song-info">
+            {currentSong.performer ? `${currentSong.performer} - ` : ''}{currentSong.title} ({currentSong.composer})
+          </h2>
+        : <h2 className="song-info">{currentSong.composer} - {currentSong.title}</h2>        
+      }
+      <ReactPlayer
+        ref={playerRef}
+        key={currentSong.url}
+        url={currentSong.url}
+        volume={volume}
+        playing={isPlaying}
+        loop={loop}
+        controls={false}
+        onPlay={handlePlay}
+        onPause={handlePause}
+        onEnded={handleEnded}
+        onProgress={handleProgress}
+        onDuration={handleDuration}
+      />
+      <Control
+        audio={playerRef}
+        playlist={filteredPlaylist}
+        playOption={playOption}
+        setPlayOption={setPlayOption}
+        duration={duration}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        setCurrentSong={setCurrentSong}
+        currentSongIndex={currentSongIndex}
+        setCurrentSongIndex={setCurrentSongIndex}
+        songProgress={songProgress}
+        setSongProgress={setSongProgress}
+        volume={volume}
+        setVolume={setVolume}
+        loop={loop}
+        setLoop={setLoop}
+        categories={categories}
+        selectedCategory={selectedCategory}
+        handleCategoryChange={handleCategoryChange}
+        shufflePlaylist={shufflePlaylist}
+      />
     </div>
   );
 }
