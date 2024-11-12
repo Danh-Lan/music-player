@@ -9,10 +9,9 @@ const PlayOptionToggle = ({ playOption, handlePlayOption }) => (
     onChange={handlePlayOption}
     size='small'
   >
-    <ToggleButton value="default" selectedcolor="#00abc0"> Default</ToggleButton>
-    <ToggleButton value="loop" selectedcolor="#00abc0">Loop</ToggleButton>
-    <ToggleButton value="autoplay" selectedcolor="#00abc0">Autoplay</ToggleButton>
-    <ToggleButton value="random autoplay" selectedcolor="#00abc0">Random autoplay</ToggleButton>
+    <ToggleButton value="default"> Default</ToggleButton>
+    <ToggleButton value="loop">Loop</ToggleButton>
+    <ToggleButton value="auto play">Auto Play</ToggleButton>
   </ToggleButtonGroup>
 );
 

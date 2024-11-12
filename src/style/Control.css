@@ -1,0 +1,29 @@
+.control-bar {
+  width: 100%;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.category-selector select {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.shuffle-button {
+  background-color: #d8d8d8;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.shuffle-button:hover {
+  background-color: #c0c0c0;
+}

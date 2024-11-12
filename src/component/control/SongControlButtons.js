@@ -1,4 +1,3 @@
-// src/component/SongControlButtons.js
 import React from 'react';
 import IconButton from "@mui/material/IconButton";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -7,7 +6,7 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 const SongControlButtons = ({ isPlaying, playStop, previousSong, nextSong }) => (
-  <div>
+  <>
     <IconButton onClick={previousSong} sx={{ minHeight: 0, minWidth: 0, padding: 0 }}>
       <SkipPreviousIcon sx={{ fontSize: 50 }} />
     </IconButton>
@@ -18,7 +17,7 @@ const SongControlButtons = ({ isPlaying, playStop, previousSong, nextSong }) => 
     <IconButton onClick={nextSong} sx={{ minHeight: 0, minWidth: 0, padding: 0 }}>
       <SkipNextIcon sx={{ fontSize: 50 }} />
     </IconButton>
-  </div>
+  </>
 );
 
 export default SongControlButtons;

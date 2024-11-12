@@ -11,10 +11,20 @@
 }
 
 .player-wrapper {
-  position: relative;
-  padding: 20px;
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  padding: 10px;
+  margin: 10px;
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 16px;
+  
+}
+
+.song-info {
+  font-size: 24px;
+  font-weight: bold;
+  color: #606060;
 }

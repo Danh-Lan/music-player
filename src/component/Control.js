@@ -3,8 +3,11 @@ import VolumeSlider from './control/VolumeSlider';
 import ProgressSlider from './control/ProgressSlider';
 import PlayOptionToggle from './control/PlayOptionToggle';
 import SongControlButtons from './control/SongControlButtons';
+import CategorySelector from './CategorySelector';
 
-const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop }) => {
+import '../style/Control.css';
+
+const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop, categories, selectedCategory, handleCategoryChange, shufflePlaylist }) => {
   const handleChangeVolume = (newVolume) => {
     setVolume(newVolume);
   };
@@ -64,23 +67,27 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
   };
 
   return (
-    <div tabIndex="1" onKeyDown={handleKeyDown} onKeyPress={(e) => handleKeyPress(e)}>
+    <div className="control-bar" tabIndex="1" onKeyDown={handleKeyDown} onKeyPress={(e) => handleKeyPress(e)}>
       <VolumeSlider duration={duration} songProgress={songProgress} volume={volume} handleChangeVolume={handleChangeVolume} />
       <ProgressSlider
         duration={duration}
         songProgress={songProgress}
         handleChangeSongProgress={handleChangeSongProgress}
       />
-      <PlayOptionToggle
-        playOption={playOption}
-        handlePlayOption={handlePlayOption}
-      />
-      <SongControlButtons
-        isPlaying={isPlaying}
-        playStop={playStop}
-        previousSong={previousSong}
-        nextSong={nextSong}
-      />
+      <div className="control-row">
+        <CategorySelector categories={categories} selectedCategory={selectedCategory} handleCategoryChange={handleCategoryChange} />
+        <SongControlButtons
+          isPlaying={isPlaying}
+          playStop={playStop}
+          previousSong={previousSong}
+          nextSong={nextSong}
+        />
+        <PlayOptionToggle
+          playOption={playOption}
+          handlePlayOption={handlePlayOption}
+        />
+        <button className="shuffle-button" onClick={shufflePlaylist}>Shuffle</button>
+      </div>
     </div>
   );
 };
