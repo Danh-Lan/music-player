@@ -6,7 +6,27 @@ import CategorySelector from './CategorySelector';
 
 import '../styles/Control.css';
 
-const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, setLoop, categories, selectedCategory, handleCategoryChange, shufflePlaylist }) => {
+const Control = ({ 
+  audio, 
+  playlist, 
+  playOption, 
+  setPlayOption, 
+  duration, 
+  isPlaying, 
+  setIsPlaying, 
+  setCurrentSong, 
+  currentSongIndex, 
+  setCurrentSongIndex, 
+  songProgress, 
+  setSongProgress, 
+  volume, 
+  setVolume, 
+  setLoop, 
+  categories, 
+  selectedCategory, 
+  handleCategoryChange, 
+  shufflePlaylist 
+}) => {
   const handleChangeVolume = (newVolume) => {
     setVolume(newVolume);
   };
@@ -37,7 +57,9 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "ArrowRight") {
+    if (event.key === ' ') {
+      setIsPlaying(!isPlaying);
+    } else if (event.key === "ArrowRight") {
       const seek = Math.min(songProgress + 5, duration);
       setSongProgress(seek);
       audio.current.seekTo(seek, "seconds");
@@ -45,12 +67,6 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
       const seek = Math.max(songProgress - 5, 0);
       setSongProgress(seek);
       audio.current.seekTo(seek, "seconds");
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === ' ') { // spacebar
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -66,7 +82,7 @@ const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlayi
   };
 
   return (
-    <div className="control-bar" tabIndex="1" onKeyDown={handleKeyDown} onKeyPress={(e) => handleKeyPress(e)}>
+    <div className="control-bar" tabIndex="1" onKeyDown={handleKeyDown}>
       <VolumeSlider duration={duration} songProgress={songProgress} volume={volume} handleChangeVolume={handleChangeVolume} />
       <ProgressSlider
         duration={duration}
