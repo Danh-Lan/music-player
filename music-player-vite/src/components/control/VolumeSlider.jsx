@@ -1,10 +1,9 @@
-import React from 'react';
 import Slider from "rc-slider";
 import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import Stack from '@mui/material/Stack';
 
-import { convertDuration } from '../../utils';
+import { convertDuration } from '../../utils/convertDuration';
 
 const VolumeSlider = ({ duration, songProgress, volume, handleChangeVolume }) => (
   <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">

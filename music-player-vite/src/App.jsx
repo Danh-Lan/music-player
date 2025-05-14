@@ -1,10 +1,10 @@
 import { useState, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
-import Control from './component/Control.js';
+import Control from './components/Control';
 import playlist from './data/playlist.json';
 
 import 'rc-slider/assets/index.css';
-import './style/App.css';
+import './styles/App.css';
 
 function App() {
   const playerRef = useRef(null);

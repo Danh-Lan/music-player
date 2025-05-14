@@ -1,13 +1,12 @@
-import React from 'react';
 import VolumeSlider from './control/VolumeSlider';
 import ProgressSlider from './control/ProgressSlider';
 import PlayOptionToggle from './control/PlayOptionToggle';
 import SongControlButtons from './control/SongControlButtons';
 import CategorySelector from './CategorySelector';
 
-import '../style/Control.css';
+import '../styles/Control.css';
 
-const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, loop, setLoop, categories, selectedCategory, handleCategoryChange, shufflePlaylist }) => {
+const Control = ({ audio, playlist, playOption, setPlayOption, duration, isPlaying, setIsPlaying, setCurrentSong, currentSongIndex, setCurrentSongIndex, songProgress, setSongProgress, volume, setVolume, setLoop, categories, selectedCategory, handleCategoryChange, shufflePlaylist }) => {
   const handleChangeVolume = (newVolume) => {
     setVolume(newVolume);
   };

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CategorySelector = ({ categories, selectedCategory, handleCategoryChange }) => (
   <div className="category-selector">
     <select value={selectedCategory} onChange={handleCategoryChange}>
