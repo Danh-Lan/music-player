@@ -1,24 +1,52 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import Control from './components/Control';
-import playlist from './data/playlist.json';
+import playlistService from './services/playlists';
 
 import 'rc-slider/assets/index.css';
 import './styles/App.css';
 
 function App() {
   const playerRef = useRef(null);
+  const [playlist, setPlaylist] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [filteredPlaylist, setFilteredPlaylist] = useState(null); // Filtered playlist based on selected category
+  const [currentSong, setCurrentSong] = useState(null);
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  
+  // Player controls
   const [playOption, setPlayOption] = useState("default");
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSong, setCurrentSong] = useState(playlist[0]);
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [songProgress, setSongProgress] = useState(0);
   const [volume, setVolume] = useState(0.8);
   const [duration, setDuration] = useState(0);
   const [loop, setLoop] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Classical");
-  const [filteredPlaylist, setFilteredPlaylist] = useState(playlist.filter(song => song.category === "Classical"));
-  const categories = Array.from(new Set(playlist.map(song => song.category)));
+
+  useEffect(() => {
+    const fetchPlaylist = async () => {
+      try {
+        const fetchedPlaylist = await playlistService.getPlaylists();
+
+        setPlaylist(fetchedPlaylist);
+
+        const uniqueCategories = Array.from(new Set(fetchedPlaylist.map(song => song.category))).sort();
+        setCategories(uniqueCategories);
+
+        const initialCategory = uniqueCategories[0];
+        setSelectedCategory(initialCategory);
+
+        const filtered = fetchedPlaylist.filter(song => song.category === initialCategory);
+        setFilteredPlaylist(filtered);
+        setCurrentSongIndex(0);
+        setCurrentSong(filtered[0]);
+      } catch (error) {
+        console.error("Error fetching playlist:", error);
+      }
+    };
+
+    fetchPlaylist();
+  }, []);
 
   const handleCategoryChange = (event) => {
     const newCategory = event.target.value;
@@ -69,6 +97,10 @@ function App() {
     setIsPlaying(false);
     setSongProgress(0);
   };
+
+  if (!filteredPlaylist || filteredPlaylist.length === 0) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <div className="player-wrapper">
