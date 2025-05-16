@@ -1,5 +1,10 @@
 import axios from 'axios';
+
 const baseUrl = '/api/playlists';
+
+const getToken = () => {
+  return localStorage.getItem('token');
+}
 
 const getPlaylists = async () => {
   try {
@@ -13,7 +18,12 @@ const getPlaylists = async () => {
 
 const createPlaylistItem = async (playlistItem) => {
   try {
-    const response = await axios.post(baseUrl, playlistItem);
+    const token = getToken();
+    const response = await axios.post(baseUrl, playlistItem, {
+      headers: {
+        'x-admin-token': token
+      }
+    });
     return response.data;
   } catch (error) {
     console.error('Error creating playlist item:', error);
