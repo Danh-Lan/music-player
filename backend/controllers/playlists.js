@@ -1,4 +1,5 @@
 const playlistsRouter = require('express').Router()
+const middleware = require('../utils/middleware')
 const Playlist = require('../models/playlist')
 
 playlistsRouter.get('/', async (request, response) => {
@@ -7,7 +8,7 @@ playlistsRouter.get('/', async (request, response) => {
   response.json(playlists)
 })
 
-playlistsRouter.post('/', async (request, response) => {
+playlistsRouter.post('/', middleware.authenticateToken, async (request, response) => {
   const playlistItem = new Playlist(request.body)
 
   const savedPlaylistItem = await playlistItem.save()
@@ -15,25 +16,25 @@ playlistsRouter.post('/', async (request, response) => {
   response.status(201).json(savedPlaylistItem)
 })
 
-playlistsRouter.put('/:id', async (request, response) => {
+// playlistsRouter.put('/:id', async (request, response) => {
 
-  const playlistItem = await Playlist.findById(request.params.id)
+//   const playlistItem = await Playlist.findById(request.params.id)
   
-  if (!playlistItem) {
-    return response.status(404).end()
-  }
+//   if (!playlistItem) {
+//     return response.status(404).end()
+//   }
 
-  await playlistItem.save()
+//   await playlistItem.save()
 
-  const updatedPlaylistItem = await Playlist.findById(playlistItem.id)
+//   const updatedPlaylistItem = await Playlist.findById(playlistItem.id)
 
-  response.json(updatedPlaylistItem)
-})
+//   response.json(updatedPlaylistItem)
+// })
 
-playlistsRouter.delete('/:id', async (request, response) => {
-  await Playlist.findByIdAndDelete(request.params.id)
+// playlistsRouter.delete('/:id', async (request, response) => {
+//   await Playlist.findByIdAndDelete(request.params.id)
 
-  response.status(204).end()
-})
+//   response.status(204).end()
+// })
 
 module.exports = playlistsRouter
