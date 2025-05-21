@@ -6,6 +6,14 @@ const getToken = () => {
   return localStorage.getItem('token');
 }
 
+const authHeaders = () => {
+  return {
+    headers: {
+      'x-admin-token': getToken()
+    }
+  }
+}
+
 const getPlaylists = async () => {
   try {
     const response = await axios.get(baseUrl);
@@ -16,14 +24,10 @@ const getPlaylists = async () => {
   }
 }
 
-const createPlaylistItem = async (playlistItem) => {
+const addTrack = async (playlistItem) => {
   try {
-    const token = getToken();
-    const response = await axios.post(baseUrl, playlistItem, {
-      headers: {
-        'x-admin-token': token
-      }
-    });
+    const response = await axios.post(baseUrl, playlistItem, authHeaders());
+
     return response.data;
   } catch (error) {
     console.error('Error creating playlist item:', error);
@@ -31,7 +35,9 @@ const createPlaylistItem = async (playlistItem) => {
   }
 }
 
-export default {
+const playlistService = {
   getPlaylists,
-  createPlaylistItem
+  addTrack
 }
+
+export default playlistService;
