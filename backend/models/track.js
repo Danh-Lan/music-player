@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PlaylistItemSchema = mongoose.Schema({
+const TrackSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -14,7 +14,7 @@ const PlaylistItemSchema = mongoose.Schema({
   category: String,
 })
 
-PlaylistItemSchema.set('toJSON', {
+TrackSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -22,4 +22,4 @@ PlaylistItemSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Playlist', PlaylistItemSchema)
+module.exports = mongoose.model('Track', TrackSchema)

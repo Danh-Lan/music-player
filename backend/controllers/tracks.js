@@ -1,19 +1,19 @@
-const playlistsRouter = require('express').Router()
+const tracksRouter = require('express').Router()
 const middleware = require('../utils/middleware')
-const Playlist = require('../models/playlist')
+const Track = require('../models/track')
 
-playlistsRouter.get('/', async (request, response) => {
-  const playlists = await Playlist.find({})
+tracksRouter.get('/', async (request, response) => {
+  const tracks = await Track.find({})
   // response.json will automatically call toJSON method in the model
-  response.json(playlists)
+  response.json(tracks)
 })
 
-playlistsRouter.post('/', middleware.authenticateToken, async (request, response) => {
-  const playlistItem = new Playlist(request.body)
+tracksRouter.post('/', middleware.authenticateToken, async (request, response) => {
+  const track = new Track(request.body)
 
-  const savedPlaylistItem = await playlistItem.save()
+  const savedTrack = await track.save()
 
-  response.status(201).json(savedPlaylistItem)
+  response.status(201).json(savedTrack)
 })
 
 // playlistsRouter.put('/:id', async (request, response) => {
@@ -37,4 +37,4 @@ playlistsRouter.post('/', middleware.authenticateToken, async (request, response
 //   response.status(204).end()
 // })
 
-module.exports = playlistsRouter
+module.exports = tracksRouter

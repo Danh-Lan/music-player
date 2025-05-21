@@ -1,7 +1,7 @@
 const express = require('express')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
-const playlistsRouter = require('./controllers/playlists')
+const tracksRouter = require('./controllers/tracks')
 const loginRouter = require('./controllers/login')
 const middleware = require('./utils/middleware')
 const mongoose = require('mongoose')
@@ -23,7 +23,7 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 
 app.use('/api/login', loginRouter)
-app.use('/api/playlists', playlistsRouter)
+app.use('/api/tracks', tracksRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)

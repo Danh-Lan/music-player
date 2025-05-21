@@ -1,6 +1,6 @@
 require('dotenv').config()
 const request = require('supertest');
-const app = require('../app'); // Adjust path to your Express app
+const app = require('../app');
 const mongoose = require('mongoose');
 
 const adminUsername = process.env.ADMIN_USERNAME;
@@ -15,16 +15,16 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-describe('Playlist API', () => {
-  describe('public routes', () => {
+describe('Tracks API', () => {
+  describe('Public routes', () => {
     test('get all tracks', async () => {
-      const res = await request(app).get('/api/playlists');
+      const res = await request(app).get('/api/tracks');
       expect(res.statusCode).toBe(200);
       expect(Array.isArray(res.body)).toBe(true);
     });
   });
 
-  describe('protected routes', () => {
+  describe('Protected routes', () => {
     beforeAll(async () => {
       // Get token from login route
       const res = await request(app)
@@ -44,7 +44,7 @@ describe('Playlist API', () => {
       };
 
       const res = await request(app)
-        .post('/api/playlists')
+        .post('/api/tracks')
         .set('x-admin-token', token)
         .send(newTrack);
 
@@ -61,7 +61,7 @@ describe('Playlist API', () => {
       };
 
       const res = await request(app)
-        .post('/api/playlists')
+        .post('/api/tracks')
         .set('X-Admin-Token', token)
         .send(newTrack);
 
