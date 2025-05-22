@@ -16,25 +16,34 @@ tracksRouter.post('/', middleware.authenticateToken, async (request, response) =
   response.status(201).json(savedTrack)
 })
 
-// playlistsRouter.put('/:id', async (request, response) => {
+tracksRouter.put('/:id', async (request, response) => {
+  const { title, url, composer, performer, category } = request.body
 
-//   const playlistItem = await Playlist.findById(request.params.id)
+  const track = await Track.findById(request.params.id)
   
-//   if (!playlistItem) {
-//     return response.status(404).end()
-//   }
+  if (!track) {
+    return response.status(404).json({ error: 'track not found' })
+  }
 
-//   await playlistItem.save()
+  track.title = title;
+  track.url = url;
+  track.composer = composer;
+  track.performer = performer;
+  track.category = category;
 
-//   const updatedPlaylistItem = await Playlist.findById(playlistItem.id)
+  const updatedTrack = await track.save()
 
-//   response.json(updatedPlaylistItem)
-// })
+  response.json(updatedTrack)
+})
 
-// playlistsRouter.delete('/:id', async (request, response) => {
-//   await Playlist.findByIdAndDelete(request.params.id)
+tracksRouter.delete('/:id', async (request, response) => {
+  const deleted = await Track.findByIdAndDelete(request.params.id)
 
-//   response.status(204).end()
-// })
+  if (!deleted) {
+    return response.status(404).json({ error: 'track not found' })
+  }
+  
+  response.status(204).end()
+})
 
 module.exports = tracksRouter

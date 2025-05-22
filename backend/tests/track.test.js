@@ -2,6 +2,7 @@ require('dotenv').config()
 const request = require('supertest');
 const app = require('../app');
 const mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 
 const adminUsername = process.env.ADMIN_USERNAME;
 const adminPassword = process.env.ADMIN_PASSWORD;
@@ -34,71 +35,129 @@ describe('Tracks API', () => {
       token = res.body.token;
     });
 
-    test('add a new track', async () => {
-      const newTrack = {
-        title: 'Test Song',
-        url: 'https://example.com',
-        composer: 'Test Composer',
-        performer: 'Test Performer',
-        category: 'Test',
-      };
+    describe('POST /api/tracks', () => {
+      test('successfully add a new track', async () => {
+        const newTrack = {
+          title: 'Test Song',
+          url: 'https://example.com',
+          composer: 'Test Composer',
+          performer: 'Test Performer',
+          category: 'Test',
+        };
 
-      const res = await request(app)
-        .post('/api/tracks')
-        .set('x-admin-token', token)
-        .send(newTrack);
+        const res = await request(app)
+          .post('/api/tracks')
+          .set('x-admin-token', token)
+          .send(newTrack);
 
-      expect(res.statusCode).toBe(201);
-      expect(res.body.title).toBe(newTrack.title);
+        expect(res.statusCode).toBe(201);
+        expect(res.body.title).toBe(newTrack.title);
+      });
+
+      test('bad request : add a track without auth token', async () => {
+        const newTrack = {
+          url: 'https://example.com',
+          composer: 'Test Composer',
+          performer: 'Test Performer',
+          category: 'Test',
+        };
+
+        const res = await request(app)
+          .post('/api/tracks')
+          .send(newTrack);
+
+        expect(res.statusCode).toBe(401);
+      });
+
+      test('bad request : add a track with wrong token', async () => {
+        const newTrack = {
+          url: 'https://example.com',
+          composer: 'Test Composer',
+          performer: 'Test Performer',
+          category: 'Test',
+        };
+
+        const randomToken = 'wrongtoken1234567890';
+        const res = await request(app)
+          .post('/api/tracks')
+          .set('x-admin-token', randomToken)
+          .send(newTrack);
+
+        expect(res.statusCode).toBe(403);
+      });
+
+      test('bad request : add a track without title', async () => {
+        const newTrack = {
+          url: 'https://example.com',
+          composer: 'Test Composer',
+          performer: 'Test Performer',
+          category: 'Test',
+        };
+
+        const res = await request(app)
+          .post('/api/tracks')
+          .set('X-Admin-Token', token)
+          .send(newTrack);
+
+        expect(res.statusCode).toBe(400);
+      });
     });
 
-    test('bad request : add a track without title', async () => {
-      const newTrack = {
-        url: 'https://example.com',
-        composer: 'Test Composer',
-        performer: 'Test Performer',
-        category: 'Test',
-      };
+    describe('PUT /api/tracks/:id', () => {
+      test('successfully update a track', async () => {
+        // Add one first
+        const postRes = await request(app)
+          .post('/api/tracks')
+          .set('X-Admin-Token', token)
+          .send({ title: 'ToUpdate', url: 'test', composer: 'test', performer: 'test', category: 'test' });
 
-      const res = await request(app)
-        .post('/api/tracks')
-        .set('X-Admin-Token', token)
-        .send(newTrack);
+        const id = postRes.body.id;
 
-      expect(res.statusCode).toBe(400);
+        const updateRes = await request(app)
+          .put(`/api/tracks/${id}`)
+          .set('X-Admin-Token', token)
+          .send({ title: 'Updated title', url: 'test', composer: 'test', performer: 'test', category: 'test' });
+
+        expect(updateRes.statusCode).toBe(200);
+        expect(updateRes.body.title).toBe('Updated title');
+      });
+
+      test('bad request: update non exist track', async () => {
+        const fakeId = new ObjectId();
+        const updateRes = await request(app)
+          .put(`/api/tracks/${fakeId}`)
+          .set('X-Admin-Token', token)
+          .send({ title: 'Updated title', url: 'test', composer: 'test', performer: 'test', category: 'test' });
+       
+        expect(updateRes.statusCode).toBe(404);
+      });
     });
 
-    // test('PUT /api/playlist/:id updates item', async () => {
-    //   // Add one first
-    //   const postRes = await request(app)
-    //     .post('/api/playlist')
-    //     .set('X-Admin-Token', token)
-    //     .send({ title: 'ToUpdate', url: 'x', composer: '', performer: '', category: '' });
+    describe('DELETE /api/tracks/:id', () => {
+      test('successfully remove a track', async () => {
+        const postRes = await request(app)
+          .post('/api/tracks')
+          .set('X-Admin-Token', token)
+          .send({ title: 'ToDelete', url: 'x', composer: 'test', performer: 'test', category: 'test' });
 
-    //   const id = postRes.body._id;
+        const id = postRes.body.id;
 
-    //   const updateRes = await request(app)
-    //     .put(`/api/playlist/${id}`)
-    //     .set('X-Admin-Token', token)
-    //     .send({ title: 'Updated Title' });
+        const delRes = await request(app)
+          .delete(`/api/tracks/${id}`)
+          .set('X-Admin-Token', token);
 
-    //   expect(updateRes.statusCode).toBe(200);
-    //   expect(updateRes.body.title).toBe('Updated Title');
-    // });
+        expect(delRes.statusCode).toBe(204);
+      });
 
-    // test('DELETE /api/playlist/:id removes item', async () => {
-    //   const postRes = await request(app)
-    //     .post('/api/playlist')
-    //     .set('X-Admin-Token', token)
-    //     .send({ title: 'ToDelete', url: 'x', composer: '', performer: '', category: '' });
+      test('bad request: remove non exist track', async () => {
+        const fakeId = new ObjectId();
 
-    //   const id = postRes.body._id;
+        const delRes = await request(app)
+          .delete(`/api/tracks/${fakeId}`)
+          .set('X-Admin-Token', token);
 
-    //   const delRes = await request(app)
-    //     .delete(`/api/playlist/${id}`)
-    //     .set('X-Admin-Token', token);
-
-    //   expect(delRes.statusCode).toBe(204);
-    // });
+        expect(delRes.statusCode).toBe(404);
+      });
+    });
   });
 });
