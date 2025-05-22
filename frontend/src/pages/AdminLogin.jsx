@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Typography, Box, Paper } from '@mui/material';
+import loginService from '../services/login';
+import { TextField, Button, Typography, Paper } from '@mui/material';
 
 function AdminLogin() {
   const navigate = useNavigate();
@@ -11,30 +12,21 @@ function AdminLogin() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
 
     try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error('Invalid credentials');
-      }
-
-      const data = await res.json();
+      const data = await loginService.login(username, password);
       localStorage.setItem('token', data.token);
       navigate('/admin');
+      setError('');
     } catch (error) {
-      setError(error.message);
+      setError('Username or password is incorrect');
     }
   };
 
   return (
-    <Box
-      component={Paper}
+    <Paper 
+      component="form"
+      onSubmit={handleLogin}
       elevation={5}
       sx={{
         maxWidth: 500,
@@ -49,7 +41,6 @@ function AdminLogin() {
       <Typography variant="h5" textAlign="center">
         Admin Login
       </Typography>
-
       <TextField
         label="Username"
         value={username}
@@ -57,7 +48,6 @@ function AdminLogin() {
         fullWidth
         autoFocus
       />
-
       <TextField
         label="Password"
         type="password"
@@ -75,7 +65,7 @@ function AdminLogin() {
       <Button variant="contained" onClick={handleLogin} fullWidth>
         Login
       </Button>
-    </Box>
+    </Paper>
   );
 }
 

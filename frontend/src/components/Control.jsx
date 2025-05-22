@@ -1,7 +1,7 @@
 import VolumeSlider from './control/VolumeSlider';
 import ProgressSlider from './control/ProgressSlider';
 import PlayOptionToggle from './control/PlayOptionToggle';
-import SongControlButtons from './control/SongControlButtons';
+import TrackControlButtons from './control/TrackControlButtons';
 import CategorySelector from './CategorySelector';
 
 import '../styles/Control.css';
@@ -14,11 +14,11 @@ const Control = ({
   duration, 
   isPlaying, 
   setIsPlaying, 
-  setCurrentSong, 
-  currentSongIndex, 
-  setCurrentSongIndex, 
-  songProgress, 
-  setSongProgress, 
+  setCurrentTrack, 
+  currentTrackIndex, 
+  setCurrentTrackIndex, 
+  trackProgress, 
+  setTrackProgress, 
   volume, 
   setVolume, 
   setLoop, 
@@ -35,24 +35,24 @@ const Control = ({
     setIsPlaying(!isPlaying);
   };
 
-  const previousSong = () => {
-    const newSongIndex = (currentSongIndex + (playlist.length - 1)) % playlist.length;
-    setSongProgress(0);
+  const previousTrack = () => {
+    const newTrackIndex = (currentTrackIndex + (playlist.length - 1)) % playlist.length;
+    setTrackProgress(0);
     setIsPlaying(true);
-    setCurrentSongIndex(newSongIndex);
-    setCurrentSong(playlist[newSongIndex]);
+    setCurrentTrackIndex(newTrackIndex);
+    setCurrentTrack(playlist[newTrackIndex]);
   };
 
-  const nextSong = () => {
-    const newSongIndex = (currentSongIndex + 1) % playlist.length;
-    setSongProgress(0);
+  const nextTrack = () => {
+    const newTrackIndex = (currentTrackIndex + 1) % playlist.length;
+    setTrackProgress(0);
     setIsPlaying(true);
-    setCurrentSongIndex(newSongIndex);
-    setCurrentSong(playlist[newSongIndex]);
+    setCurrentTrackIndex(newTrackIndex);
+    setCurrentTrack(playlist[newTrackIndex]);
   };
 
-  const handleChangeSongProgress = (progress) => {
-    setSongProgress(progress);
+  const handleChangeTrackProgress = (progress) => {
+    setTrackProgress(progress);
     audio.current.seekTo(progress, "seconds");
   };
 
@@ -60,12 +60,12 @@ const Control = ({
     if (event.key === ' ') {
       setIsPlaying(!isPlaying);
     } else if (event.key === "ArrowRight") {
-      const seek = Math.min(songProgress + 5, duration);
-      setSongProgress(seek);
+      const seek = Math.min(trackProgress + 5, duration);
+      setTrackProgress(seek);
       audio.current.seekTo(seek, "seconds");
     } else if (event.key === "ArrowLeft") {
-      const seek = Math.max(songProgress - 5, 0);
-      setSongProgress(seek);
+      const seek = Math.max(trackProgress - 5, 0);
+      setTrackProgress(seek);
       audio.current.seekTo(seek, "seconds");
     }
   };
@@ -83,19 +83,19 @@ const Control = ({
 
   return (
     <div className="control-bar" tabIndex="1" onKeyDown={handleKeyDown}>
-      <VolumeSlider duration={duration} songProgress={songProgress} volume={volume} handleChangeVolume={handleChangeVolume} />
+      <VolumeSlider duration={duration} TrackProgress={trackProgress} volume={volume} handleChangeVolume={handleChangeVolume} />
       <ProgressSlider
         duration={duration}
-        songProgress={songProgress}
-        handleChangeSongProgress={handleChangeSongProgress}
+        TrackProgress={trackProgress}
+        handleChangeTrackProgress={handleChangeTrackProgress}
       />
       <div className="control-row">
         <CategorySelector categories={categories} selectedCategory={selectedCategory} handleCategoryChange={handleCategoryChange} />
-        <SongControlButtons
+        <TrackControlButtons
           isPlaying={isPlaying}
           playStop={playStop}
-          previousSong={previousSong}
-          nextSong={nextSong}
+          previousTrack={previousTrack}
+          nextTrack={nextTrack}
         />
         <PlayOptionToggle
           playOption={playOption}

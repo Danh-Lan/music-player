@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import playlistService from '../services/playlists';
+import trackService from '../services/track';
 import AddTrackDialog from '../components/AddTrackForm';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead,
@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 
 function AdminPage() {
-  const [playlist, setPlaylist] = useState([]);
+  const [library, setLibrary] = useState([]);
   const headers = [
     { id: 'title', label: 'Title' },
     { id: 'composer', label: 'Composer' },
@@ -21,19 +21,19 @@ function AdminPage() {
   const [addTrackFormOpen, setAddTrackFormOpen] = useState(false);
 
   useEffect(() => {
-    const fetchPlaylist = async () => {
+    const fetchLibrary = async () => {
       try {
-        const fetchedPlaylist = await playlistService.getPlaylists();
-        setPlaylist(fetchedPlaylist);
+        const fetchedLibrary = await trackService.getLibrary();
+        setLibrary(fetchedLibrary);
       } catch (error) {
         console.error("Error fetching playlist:", error);
       }
     }
 
-    fetchPlaylist();
+    fetchLibrary();
   }, []);
 
-  const sortedTracks = [...playlist].sort((a, b) => {
+  const sortedTracks = [...library].sort((a, b) => {
     const aVal = a[sortBy]?.toLowerCase() || '';
     const bVal = b[sortBy]?.toLowerCase() || '';
 
@@ -53,10 +53,10 @@ function AdminPage() {
 
   const handleAddTrack = async (newTrack) => {
     try {
-      await playlistService.addTrack(newTrack);
+      await trackService.addTrack(newTrack);
       setAddTrackFormOpen(false);
       
-      setPlaylist((prevTracks) => [...prevTracks, newTrack]);
+      setLibrary((prevTracks) => [...prevTracks, newTrack]);
     } catch (error) {
       console.error(error.message);
     }

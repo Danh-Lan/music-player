@@ -1,19 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import Control from '../components/Control';
-import playlistService from '../services/playlists';
+import trackService from '../services/track';
 
 import 'rc-slider/assets/index.css';
 import '../styles/Home.css';
 
 function Home() {
   const playerRef = useRef(null);
-  const [playlist, setPlaylist] = useState([]);
+  const [library, setLibrary] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredPlaylist, setFilteredPlaylist] = useState(null); // Filtered playlist based on selected category
-  const [currentSong, setCurrentSong] = useState(null);
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [currentTrack, setCurrentTrack] = useState(null);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   
   // Player controls
   const [playOption, setPlayOption] = useState("default");
@@ -24,37 +24,38 @@ function Home() {
   const [loop, setLoop] = useState(false);
 
   useEffect(() => {
-    const fetchPlaylist = async () => {
+    const fetchLibrary = async () => {
       try {
-        const fetchedPlaylist = await playlistService.getPlaylists();
+        const fetchedLibrary = await trackService.getLibrary();
 
-        setPlaylist(fetchedPlaylist);
+        setLibrary(fetchedLibrary);
 
-        const uniqueCategories = Array.from(new Set(fetchedPlaylist.map(song => song.category))).sort();
+        const uniqueCategories = Array.from(new Set(fetchedLibrary.map(song => song.category))).sort();
         setCategories(uniqueCategories);
 
         const initialCategory = uniqueCategories[0];
         setSelectedCategory(initialCategory);
 
-        const filtered = fetchedPlaylist.filter(song => song.category === initialCategory);
+        const filtered = fetchedLibrary.filter(song => song.category === initialCategory);
         setFilteredPlaylist(filtered);
-        setCurrentSongIndex(0);
-        setCurrentSong(filtered[0]);
+        setCurrentTrackIndex(0);
+        setCurrentTrack(filtered[0]);
       } catch (error) {
         console.error("Error fetching playlist:", error);
       }
     };
 
-    fetchPlaylist();
+    fetchLibrary();
   }, []);
 
   const handleCategoryChange = (event) => {
     const newCategory = event.target.value;
     setSelectedCategory(newCategory);
-    const filteredSongs = playlist.filter(song => song.category === newCategory);
-    setFilteredPlaylist(filteredSongs);
-    setCurrentSong(filteredSongs[0]);
-    setCurrentSongIndex(0);
+    
+    const filteredTracks = library.filter(song => song.category === newCategory);
+    setFilteredPlaylist(filteredTracks);
+    setCurrentTrack(filteredTracks[0]);
+    setCurrentTrackIndex(0);
     setIsPlaying(false);
     setSongProgress(0);
   };
@@ -73,11 +74,11 @@ function Home() {
     } else if (playOption === "loop") {
       // loop is handled in control.js, handlePlayOption
     } else if (playOption === "auto play") {
-      const newSongIndex = (currentSongIndex + 1) % filteredPlaylist.length;
+      const newSongIndex = (currentTrackIndex + 1) % filteredPlaylist.length;
       setSongProgress(0);
       setIsPlaying(true);
-      setCurrentSongIndex(newSongIndex);
-      setCurrentSong(filteredPlaylist[newSongIndex]);
+      setCurrentTrackIndex(newSongIndex);
+      setCurrentTrack(filteredPlaylist[newSongIndex]);
     }
   };
 
@@ -92,28 +93,28 @@ function Home() {
   const shufflePlaylist = () => {
     const shuffled = [...filteredPlaylist].sort(() => Math.random() - 0.5);
     setFilteredPlaylist(shuffled);
-    setCurrentSong(shuffled[0]);
-    setCurrentSongIndex(0);
+    setCurrentTrack(shuffled[0]);
+    setCurrentTrackIndex(0);
     setIsPlaying(false);
     setSongProgress(0);
   };
 
   if (!filteredPlaylist || filteredPlaylist.length === 0) {
-    return <div className="loading">Loading...</div>;
+    return <div className="loading">Library is empty</div>;
   }
 
   return (
     <div className="player-wrapper">
       {(selectedCategory === "Classical") 
         ? <h2 className="song-info">
-            {currentSong.performer ? `${currentSong.performer} - ` : ''}{currentSong.title} ({currentSong.composer})
+            {currentTrack.performer ? `${currentTrack.performer} - ` : ''}{currentTrack.title} ({currentTrack.composer})
           </h2>
-        : <h2 className="song-info">{currentSong.composer} - {currentSong.title}</h2>        
+        : <h2 className="song-info">{currentTrack.composer} - {currentTrack.title}</h2>
       }
       <ReactPlayer
         ref={playerRef}
-        key={currentSong.url}
-        url={currentSong.url}
+        key={currentTrack.url}
+        url={currentTrack.url}
         volume={volume}
         playing={isPlaying}
         loop={loop}
@@ -132,9 +133,9 @@ function Home() {
         duration={duration}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
-        setCurrentSong={setCurrentSong}
-        currentSongIndex={currentSongIndex}
-        setCurrentSongIndex={setCurrentSongIndex}
+        setCurrentTrack={setCurrentTrack}
+        currentTrackIndex={currentTrackIndex}
+        setCurrentTrackIndex={setCurrentTrackIndex}
         songProgress={songProgress}
         setSongProgress={setSongProgress}
         volume={volume}

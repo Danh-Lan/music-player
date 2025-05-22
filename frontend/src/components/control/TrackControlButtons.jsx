@@ -4,7 +4,7 @@ import StopIcon from '@mui/icons-material/Stop';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 
-const SongControlButtons = ({ isPlaying, playStop, previousSong, nextSong }) => (
+const TrackControlButtons = ({ isPlaying, playStop, previousSong, nextSong }) => (
   <>
     <IconButton onClick={previousSong} sx={{ minHeight: 0, minWidth: 0, padding: 0 }}>
       <SkipPreviousIcon sx={{ fontSize: 50 }} />
@@ -19,4 +19,4 @@ const SongControlButtons = ({ isPlaying, playStop, previousSong, nextSong }) => 
   </>
 );
 
-export default SongControlButtons;
+export default TrackControlButtons;
