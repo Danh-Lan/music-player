@@ -1,14 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
 
-const AddTrackForm = ({ open, onClose, onSubmit }) => {
+const TrackForm = ({ formTitle, open, onClose, onSubmit, initialData }) => {
   const [track, setTrack] = useState({
+    id: null,
     title: '',
     url: '',
     composer: '',
     performer: '',
     category: ''
   });
+
+  useEffect(() => {
+    if (initialData) {
+      setTrack({
+        id: initialData.id || null,
+        title: initialData.title || '',
+        url: initialData.url || '',
+        composer: initialData.composer || '',
+        performer: initialData.performer || '',
+        category: initialData.category || ''
+      })
+    }
+  }, [initialData, open]);
   
   const fields = [
     { id: 'title', label: 'Title' },
@@ -21,6 +35,7 @@ const AddTrackForm = ({ open, onClose, onSubmit }) => {
   const handleSubmit = async (track) => {
     await onSubmit(track);
     setTrack({
+      id: null,
       title: '',
       url: '',
       composer: '',
@@ -31,7 +46,7 @@ const AddTrackForm = ({ open, onClose, onSubmit }) => {
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Add New Track</DialogTitle>
+      <DialogTitle>{formTitle}</DialogTitle>
       <DialogContent>
         {fields.map(({ id, label }) => (
           <TextField
@@ -48,11 +63,11 @@ const AddTrackForm = ({ open, onClose, onSubmit }) => {
       <DialogActions>
         <Button onClick={onClose}>Cancel</Button>
         <Button onClick={() => handleSubmit(track)} variant="contained">
-          Create
+          Confirm
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
 
-export default AddTrackForm;
+export default TrackForm;

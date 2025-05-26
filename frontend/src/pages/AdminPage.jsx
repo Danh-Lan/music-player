@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import trackService from '../services/track';
-import AddTrackDialog from '../components/AddTrackForm';
+import TrackForm from '../components/TrackForm';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead,
   TableRow, Paper, TableSortLabel, Button
@@ -19,6 +19,8 @@ function AdminPage() {
   const [sortDirection, setSortDirection] = useState('asc');
 
   const [addTrackFormOpen, setAddTrackFormOpen] = useState(false);
+  const [editTrackFormOpen, setEditTrackFormOpen] = useState(false);
+  const [trackToEdit, setTrackToEdit] = useState(null);
 
   useEffect(() => {
     const fetchLibrary = async () => {
@@ -62,14 +64,35 @@ function AdminPage() {
     }
   }
 
-  const handleEditTrack = (track) => {
-    // Logic to edit a track
-    alert(`Edit track functionality not implemented yet for ${track.title}.`);
+  const handleToEditMode = (track) => {
+    setEditTrackFormOpen(true);
+    setTrackToEdit(track);
   }
 
-  const handleDeleteTrack = (track) => {
-    // Logic to delete a track
-    alert(`Delete track functionality not implemented yet for ${track.title}.`);
+  const handleQuitEditMode = () => {
+    setEditTrackFormOpen(false);
+    setTrackToEdit(null);
+  }
+
+  const handleEditTrack = async (track) => {
+    try {
+      await trackService.updateTrack(track.id, track);
+      setEditTrackFormOpen(false);
+      setLibrary((prevTracks) => prevTracks.map(t => (t.id === track.id ? track : t)));
+    } catch (error) {
+      console.error("Error updating track:", error);
+    }
+  }
+
+  const handleDeleteTrack = async (track) => {
+    try {
+      if (window.confirm(`Are you sure you want to delete the track "${track.title}"?`)) {
+        await trackService.deleteTrack(track.id);
+        setLibrary((prevTracks) => prevTracks.filter(t => t.id !== track.id));
+      }
+    } catch (error) {
+      console.error("Error deleting track:", error);
+    }
   }
 
   return (
@@ -110,7 +133,7 @@ function AdminPage() {
                   <a href={track.url} target="_blank" rel="noreferrer">Link</a>
                 </TableCell>
                 <TableCell>
-                  <Button size="small" variant="outlined" sx={{ mr: 1 }} onClick={() => handleEditTrack(track)}>Edit</Button>
+                  <Button size="small" variant="outlined" sx={{ mr: 1 }} onClick={() => handleToEditMode(track)}>Edit</Button>
                   <Button size="small" variant="outlined" color="error" onClick={() => handleDeleteTrack(track)}>Delete</Button>
                 </TableCell>
               </TableRow>
@@ -119,10 +142,19 @@ function AdminPage() {
         </Table>
       </TableContainer>
 
-      <AddTrackDialog
+      <TrackForm
+        formTitle="Add New Track"
         open={addTrackFormOpen}
         onClose={() => setAddTrackFormOpen(false)}
         onSubmit={handleAddTrack}
+      />
+
+      <TrackForm
+        formTitle="Edit Track"
+        open={editTrackFormOpen}
+        onClose={handleQuitEditMode}
+        onSubmit={handleEditTrack}
+        initialData={trackToEdit}
       />
     </>
   );
