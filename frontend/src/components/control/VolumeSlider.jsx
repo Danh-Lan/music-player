@@ -20,7 +20,7 @@ const VolumeSlider = ({ duration, trackProgress, volume, handleChangeVolume }) =
     <div>
       <span>{convertDuration(Math.floor(trackProgress))}</span>
       <span>&nbsp;/&nbsp;</span>
-      <span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration - 1))}</span>
+      <span>{convertDuration(Math.floor(duration - 1))}</span>
     </div>
   </Stack>
 );
