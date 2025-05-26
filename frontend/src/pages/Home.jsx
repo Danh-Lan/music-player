@@ -18,7 +18,7 @@ function Home() {
   // Player controls
   const [playOption, setPlayOption] = useState("default");
   const [isPlaying, setIsPlaying] = useState(false);
-  const [songProgress, setSongProgress] = useState(0);
+  const [trackProgress, setTrackProgress] = useState(0);
   const [volume, setVolume] = useState(0.8);
   const [duration, setDuration] = useState(0);
   const [loop, setLoop] = useState(false);
@@ -30,13 +30,13 @@ function Home() {
 
         setLibrary(fetchedLibrary);
 
-        const uniqueCategories = Array.from(new Set(fetchedLibrary.map(song => song.category))).sort();
+        const uniqueCategories = Array.from(new Set(fetchedLibrary.map(track => track.category))).sort();
         setCategories(uniqueCategories);
 
         const initialCategory = uniqueCategories[0];
         setSelectedCategory(initialCategory);
 
-        const filtered = fetchedLibrary.filter(song => song.category === initialCategory);
+        const filtered = fetchedLibrary.filter(track => track.category === initialCategory);
         setFilteredPlaylist(filtered);
         setCurrentTrackIndex(0);
         setCurrentTrack(filtered[0]);
@@ -52,12 +52,12 @@ function Home() {
     const newCategory = event.target.value;
     setSelectedCategory(newCategory);
     
-    const filteredTracks = library.filter(song => song.category === newCategory);
+    const filteredTracks = library.filter(track => track.category === newCategory);
     setFilteredPlaylist(filteredTracks);
     setCurrentTrack(filteredTracks[0]);
     setCurrentTrackIndex(0);
     setIsPlaying(false);
-    setSongProgress(0);
+    setTrackProgress(0);
   };
 
   const handlePlay = () => {
@@ -74,16 +74,16 @@ function Home() {
     } else if (playOption === "loop") {
       // loop is handled in control.js, handlePlayOption
     } else if (playOption === "auto play") {
-      const newSongIndex = (currentTrackIndex + 1) % filteredPlaylist.length;
-      setSongProgress(0);
+      const newTrackIndex = (currentTrackIndex + 1) % filteredPlaylist.length;
+      setTrackProgress(0);
       setIsPlaying(true);
-      setCurrentTrackIndex(newSongIndex);
-      setCurrentTrack(filteredPlaylist[newSongIndex]);
+      setCurrentTrackIndex(newTrackIndex);
+      setCurrentTrack(filteredPlaylist[newTrackIndex]);
     }
   };
 
   const handleProgress = (progress) => {
-    setSongProgress(progress.playedSeconds);
+    setTrackProgress(progress.playedSeconds);
   };
 
   const handleDuration = (duration) => {
@@ -96,7 +96,7 @@ function Home() {
     setCurrentTrack(shuffled[0]);
     setCurrentTrackIndex(0);
     setIsPlaying(false);
-    setSongProgress(0);
+    setTrackProgress(0);
   };
 
   if (!filteredPlaylist || filteredPlaylist.length === 0) {
@@ -106,10 +106,10 @@ function Home() {
   return (
     <div className="player-wrapper">
       {(selectedCategory === "Classical") 
-        ? <h2 className="song-info">
+        ? <h2 className="track-info">
             {currentTrack.performer ? `${currentTrack.performer} - ` : ''}{currentTrack.title} ({currentTrack.composer})
           </h2>
-        : <h2 className="song-info">{currentTrack.composer} - {currentTrack.title}</h2>
+        : <h2 className="track-info">{currentTrack.composer} - {currentTrack.title}</h2>
       }
       <ReactPlayer
         ref={playerRef}
@@ -136,8 +136,8 @@ function Home() {
         setCurrentTrack={setCurrentTrack}
         currentTrackIndex={currentTrackIndex}
         setCurrentTrackIndex={setCurrentTrackIndex}
-        songProgress={songProgress}
-        setSongProgress={setSongProgress}
+        trackProgress={trackProgress}
+        setTrackProgress={setTrackProgress}
         volume={volume}
         setVolume={setVolume}
         loop={loop}

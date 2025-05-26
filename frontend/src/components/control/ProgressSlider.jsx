@@ -1,6 +1,6 @@
 import Slider from "rc-slider";
 
-const ProgressSlider = ({ duration, songProgress, handleChangeSongProgress }) => (
+const ProgressSlider = ({ duration, trackProgress, handleChangeTrackProgress }) => (
   <Slider
     styles={{
       track: { backgroundColor: 'red', height: 5 },
@@ -11,8 +11,8 @@ const ProgressSlider = ({ duration, songProgress, handleChangeSongProgress }) =>
     min={0}
     max={duration}
     step={1}
-    onChange={handleChangeSongProgress}
-    value={songProgress}
+    onChange={handleChangeTrackProgress}
+    value={trackProgress}
   />
 );
 

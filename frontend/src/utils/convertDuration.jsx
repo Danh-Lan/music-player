@@ -8,7 +8,7 @@ export const convertDuration = (duration) => {
   return (
     <span>
       {(hour > 0) ? hour + ':' : ''}
-      {(minute < 10) ? '0' + minute : minute}
+      {minute}
       :
       {(second < 10) ? '0' + second : second}
     </span>

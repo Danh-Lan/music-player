@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 
 import { convertDuration } from '../../utils/convertDuration';
 
-const VolumeSlider = ({ duration, songProgress, volume, handleChangeVolume }) => (
+const VolumeSlider = ({ duration, trackProgress, volume, handleChangeVolume }) => (
   <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
     <VolumeDown />
     <Slider
@@ -18,7 +18,7 @@ const VolumeSlider = ({ duration, songProgress, volume, handleChangeVolume }) =>
     />
     <VolumeUp />
     <div>
-      <span>{convertDuration(Math.floor(songProgress))}</span>
+      <span>{convertDuration(Math.floor(trackProgress))}</span>
       <span>&nbsp;/&nbsp;</span>
       <span>{duration === 0 ? '0:00' : convertDuration(Math.floor(duration - 1))}</span>
     </div>

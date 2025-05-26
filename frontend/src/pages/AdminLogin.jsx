@@ -16,8 +16,8 @@ function AdminLogin() {
     try {
       const data = await loginService.login(username, password);
       localStorage.setItem('token', data.token);
-      navigate('/admin');
       setError('');
+      navigate('/admin');
     } catch (error) {
       setError('Username or password is incorrect');
     }
