@@ -10,6 +10,10 @@ export default defineConfig({
         target: 'http://localhost:2247',
         changeOrigin: true
       }
+    },
+    fs: {
+      strict: false, // Allow serving files outside of the project root
+      allow: ['src', 'public'] // Allow access to the parent directory
     }
   },
   // build: {
