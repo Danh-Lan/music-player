@@ -17,6 +17,7 @@ function App() {
             isLoggedIn() ? <AdminPage /> : <Navigate to="/admin/login" />
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );

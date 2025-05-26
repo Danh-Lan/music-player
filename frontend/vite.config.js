@@ -16,19 +16,8 @@ export default defineConfig({
       allow: ['src', 'public'] // Allow access to the parent directory
     }
   },
-  // build: {
-  //   outDir: '../backend/static',
-  //   emptyOutDir: true,
-  //   rollupOptions: {
-  //     input: {
-  //       main: 'src/main.jsx',
-  //       admin: 'src/admin.jsx'
-  //     },
-  //     output: {
-  //       entryFileNames: '[name].js',
-  //       chunkFileNames: '[name].js',
-  //       assetFileNames: '[name].[ext]'
-  //     }
-  //   }
-  // }
+  build: {
+    outDir: '../backend/client',
+    emptyOutDir: true,
+  }
 })
