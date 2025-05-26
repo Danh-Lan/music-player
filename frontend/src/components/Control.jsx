@@ -83,7 +83,7 @@ const Control = ({
 
   return (
     <div className="control-bar" tabIndex="1" onKeyDown={handleKeyDown}>
-      <VolumeSlider duration={duration} TrackProgress={trackProgress} volume={volume} handleChangeVolume={handleChangeVolume} />
+      <VolumeSlider duration={duration} trackProgress={trackProgress} volume={volume} handleChangeVolume={handleChangeVolume} />
       <ProgressSlider
         duration={duration}
         TrackProgress={trackProgress}
