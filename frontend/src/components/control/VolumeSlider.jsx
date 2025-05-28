@@ -3,7 +3,7 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import Stack from '@mui/material/Stack';
 
-import { convertDuration } from '../../utils/convertDuration';
+import convertDuration from '../../utils/convertDuration';
 
 const VolumeSlider = ({ duration, trackProgress, volume, handleChangeVolume }) => (
   <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">

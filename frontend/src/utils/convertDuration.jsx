@@ -1,4 +1,4 @@
-export const convertDuration = (duration) => {
+export default function convertDuration(duration) {
   if (!duration || duration < 0) return '0:00';
 
   const hour = Math.floor(duration / 3600);
