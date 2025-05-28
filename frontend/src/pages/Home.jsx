@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import Control from '../components/Control';
 import trackService from '../services/track';
+import shuffleArray from '../utils/shuffleArray';
 
 import 'rc-slider/assets/index.css';
 import '../styles/Home.css';
@@ -91,7 +92,7 @@ function Home() {
   };
 
   const shufflePlaylist = () => {
-    const shuffled = [...filteredPlaylist].sort(() => Math.random() - 0.5);
+    const shuffled = shuffleArray(filteredPlaylist);
     setFilteredPlaylist(shuffled);
     setCurrentTrack(shuffled[0]);
     setCurrentTrackIndex(0);
